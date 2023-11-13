@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <SpellCard v-for="spell in list" :key="spell" :spell="spell" />
+  <SpellCard v-for="spell in list" :key="spell.name" :spell="spell" />
 </template>
 
 <style scoped>

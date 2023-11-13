@@ -15,7 +15,7 @@ module.exports = {
   'parserOptions': {
     'project': ['./tsconfig.json'],
   },
-  'ignorePatterns': ['vite.config.ts', 'mock/*', 'getNumber.js', 'postcss.config.js', 'tailwind.config.js'],
+  'ignorePatterns': ['vite.config.ts', ],
   'rules': {
     'class-methods-use-this': 1,
     'no-underscore-dangle': ['error', { 'allowAfterThis': true }],
