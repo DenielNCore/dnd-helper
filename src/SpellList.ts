@@ -13,8 +13,8 @@ export interface ISpell {
   highLvl: {
     has: boolean;
     from?: number;
-    description: string;
-    effect: string;
+    description?: string;
+    effect?: string;
   };
   concentration: boolean;
   targets: number;
@@ -35,6 +35,7 @@ enum Spell {
   DivineFavor = 'DivineFavor',
   Bless = 'Bless',
   Fireball = 'Fireball',
+  DetectMagic = 'DetectMagic',
 }
 
 const spells: { [key: string]: ISpell } = {
@@ -69,6 +70,34 @@ const spells: { [key: string]: ISpell } = {
     actionType: 'Дія',
     damageType: ['вогонь'],
   },
+  [Spell.DetectMagic]: {
+    name: 'ВИЯВЛЕННЯ МАГІЇ',
+    lvl: 1,
+    school: 'віщування (ритуал)',
+    description:
+      'Доки заклинання триває, ти відчуваєш присутність магії в межах 6 метрів від тебе. Якщо ти відчув за рахунок цього заклинання присутність магії, ти можеш використати свій вчинок, щоб побачити слабку ауру навколо видимої істоти або предмета, що несе на собі магію, а також дізнатися шко- лу цієї магії, якщо вона є. Це заклинання пронизує більшу частину бар’єрів, але блокується 30 сантиметрами каменю, 3 сантиметрами зви- чайного металу, тонким листом свинцю або 1 метром дере- ва або землі.',
+    distance: 'На себе',
+    components: {
+      c: true,
+      t: true,
+      m: 'Т',
+    },
+    duration: 'До 10 хвилин',
+    highLvl: {
+      has: false,
+    },
+    concentration: true,
+    targets: 0,
+    freeWay: false,
+    self: true,
+    area: '',
+    saveThough: '',
+    attack: '',
+    ritual: true,
+    actionType: '1 вчинок',
+    damageType: [],
+  },
+
   [Spell.Bless]: {
     name: 'БЛАГОСЛОВЕННЯ',
     lvl: 1,
@@ -81,7 +110,7 @@ const spells: { [key: string]: ISpell } = {
       t: true,
       m: 'крапля святої води',
     },
-    duration: 'Концентрація, не довше 1 хвилини',
+    duration: 'До 1 хвилини',
     highLvl: {
       has: true,
       from: 2,
@@ -112,7 +141,7 @@ const spells: { [key: string]: ISpell } = {
       c: true,
       t: true,
     },
-    duration: 'Концентрація, не довше 1 хвилини',
+    duration: 'До 1 хвилини',
     highLvl: {
       has: false,
       description: '',
@@ -171,7 +200,7 @@ const spells: { [key: string]: ISpell } = {
       t: false,
       m: '',
     },
-    duration: 'Концентрація, не довше 10 хвилин',
+    duration: 'До 10 хвилин',
     highLvl: {
       has: false,
       description: '',
@@ -220,6 +249,30 @@ const spells: { [key: string]: ISpell } = {
   },
 };
 
-export default { Spell, spells };
+enum Class {
+  Artificer = 'Artificer',
+  Bard = 'Bard',
+  Cleric = 'Cleric',
+  Druid = 'Druid',
+  Paladin = 'Paladin',
+  Ranger = 'Ranger',
+  Sorcerer = 'Sorcerer',
+  Warlock = 'Warlock',
+  Wizard = 'Wizard',
+}
 
-export { Spell, spells };
+const ClassSpells: { [key: string]: Array<Spell> } = {
+  [Class.Bard]: [Spell.Fireball, Spell.Bless, Spell.AuraOfLife],
+  [Class.Wizard]: [
+    Spell.Fireball,
+    Spell.Bless,
+    Spell.AuraOfLife,
+    Spell.FeignDeath,
+    Spell.DivineFavor,
+  ],
+  [Class.Paladin]: [Spell.HeroesFeast, Spell.DetectMagic],
+};
+
+export default { Spell, spells, Class, ClassSpells };
+
+export { Spell, spells, Class, ClassSpells };
