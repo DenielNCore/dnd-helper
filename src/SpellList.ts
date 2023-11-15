@@ -1,15 +1,40 @@
+enum MagicSchool {
+  Abjuration = 'Abjuration',
+  Conjuration = 'Conjuration',
+  Divination = 'Divination',
+  Enchantment = 'Enchantment',
+  Evocation = 'Evocation',
+  Illusion = 'Illusion',
+  Necromancy = 'Necromancy',
+  Transmutation = 'Transmutation',
+}
+
+enum Action {
+  Action = 'Action',
+  BonusAction = 'BonusAction',
+  LongTerm = 'LongTerm',
+}
+
 export interface ISpell {
   name: string;
   lvl: number;
+
   school: string;
+  // school: MagicSchool;
+  actionType: Action;
+  castTime: number; // секунд
+  duration: number | 'Доки не буде розсіяне або не спрацює' | 'Доки не розсіється або не спрацює'; // секунд, 1 раунд = 6 секунд
+
+  distance: number | 'На себе' | 'Дотик'; // метрів
+  target: string;
+  numberOfTargets: number;
+
   description: string;
-  distance: string;
   components: {
-    c?: boolean;
-    t?: boolean;
+    c: boolean;
+    t: boolean;
     m?: string;
   };
-  duration: string;
   highLvl: {
     has: boolean;
     from?: number;
@@ -17,14 +42,13 @@ export interface ISpell {
     effect?: string;
   };
   concentration: boolean;
-  targets: number;
   freeWay: boolean;
   self: boolean;
   area: string;
   saveThough: string;
   attack: string;
   ritual: boolean;
-  actionType: string;
+
   damageType: string[];
 }
 
@@ -45,13 +69,14 @@ const spells: { [key: string]: ISpell } = {
     school: 'втілення',
     description:
       'Яскравий промінь вилітає із твого вказівного пальця в точку, обрану тобою в межах дистанції, де і відбувається вибух полум’я з гучним гуркотом. Всі істоти в межах сфери з радіусом 4 метри з центром в тій точці повинні зробити кидок рятунку Вправності. Ціль отримує 8к6 ушкоджень вогнем при провалі кидка рятунку, або половину цих ушкоджень при успіху. Цей вогонь огинає кути. Він запалює легкозаймисті предмети, які ніхто не тримає і не носить.',
-    distance: '30 метрів',
+    distance: 30,
     components: {
       c: true,
       t: true,
       m: 'крихітна кулька з гуано кажана і сірки',
     },
-    duration: 'Миттєва',
+    castTime: 0,
+    duration: 0,
     highLvl: {
       has: true,
       from: 4,
@@ -60,14 +85,15 @@ const spells: { [key: string]: ISpell } = {
       effect: '',
     },
     concentration: false,
-    targets: 0,
+    target: 'точка в межах видимості',
+    numberOfTargets: Infinity,
     freeWay: true,
     self: false,
     area: 'сфера з радіусом 4 метри',
     saveThough: 'Вправності',
     attack: '',
     ritual: false,
-    actionType: 'Дія',
+    actionType: Action.Action,
     damageType: ['вогонь'],
   },
   [Spell.DetectMagic]: {
@@ -76,25 +102,26 @@ const spells: { [key: string]: ISpell } = {
     school: 'віщування (ритуал)',
     description:
       'Доки заклинання триває, ти відчуваєш присутність магії в межах 6 метрів від тебе. Якщо ти відчув за рахунок цього заклинання присутність магії, ти можеш використати свій вчинок, щоб побачити слабку ауру навколо видимої істоти або предмета, що несе на собі магію, а також дізнатися шко- лу цієї магії, якщо вона є. Це заклинання пронизує більшу частину бар’єрів, але блокується 30 сантиметрами каменю, 3 сантиметрами зви- чайного металу, тонким листом свинцю або 1 метром дере- ва або землі.',
-    distance: 'На себе',
+    distance: 6,
+    target: 'На себе',
     components: {
       c: true,
       t: true,
-      m: 'Т',
     },
-    duration: 'До 10 хвилин',
+    castTime: 0,
+    duration: 600,
     highLvl: {
       has: false,
     },
     concentration: true,
-    targets: 0,
+    numberOfTargets: 0,
     freeWay: false,
     self: true,
     area: '',
     saveThough: '',
     attack: '',
     ritual: true,
-    actionType: '1 вчинок',
+    actionType: Action.Action,
     damageType: [],
   },
 
@@ -104,13 +131,17 @@ const spells: { [key: string]: ISpell } = {
     school: 'причарування',
     description:
       'Ти благословляєш не більше трьох істот на твій вибір в межах дистанції. Кожен раз, коли до закінчення ефекту заклинання ціль здійснює кидок атаки або кидок рятунку, вона може кинути додатково к4 і додати число, яке випало, до результату того кидка.',
-    distance: '6 метрів',
+    distance: 6,
+    target: 'істоти',
+    numberOfTargets: 3,
     components: {
       c: true,
       t: true,
       m: 'крапля святої води',
     },
-    duration: 'До 1 хвилини',
+    duration: 60,
+    castTime: 0,
+    concentration: true,
     highLvl: {
       has: true,
       from: 2,
@@ -118,15 +149,13 @@ const spells: { [key: string]: ISpell } = {
         'Ти можеш обрати цілями по одній додатковій істоті за кожен рівень витраченого слота вище 1-го.',
       effect: '',
     },
-    concentration: true,
-    targets: 3,
     freeWay: true,
     self: false,
     area: '',
     saveThough: '',
     attack: '',
     ritual: false,
-    actionType: 'Дія',
+    actionType: Action.Action,
     damageType: [],
   },
 
@@ -141,21 +170,23 @@ const spells: { [key: string]: ISpell } = {
       c: true,
       t: true,
     },
-    duration: 'До 1 хвилини',
+    castTime: 0,
+    duration: 60,
     highLvl: {
       has: false,
       description: '',
       effect: '',
     },
     concentration: true,
-    targets: 0,
+    target: 'на себе',
+    numberOfTargets: 1,
     freeWay: true,
     self: true,
     area: '',
     saveThough: '',
     attack: '',
     ritual: false,
-    actionType: 'Бонусний вчинок',
+    actionType: Action.BonusAction,
     damageType: [],
   },
   [Spell.HeroesFeast]: {
@@ -164,27 +195,29 @@ const spells: { [key: string]: ISpell } = {
     school: 'виклик',
     description:
       'Ти організовуєш шикарний бенкет, який включає чудову їжу та напої. Бенкет триває 1 годину, і зникає після закінчення цього строку, але позитивні ефекти не вступають в силу, доки цей час не пройде. У бенкеті можуть брати участь до дванадцяти істот.',
-    distance: '6 метрів',
+    distance: 6,
     components: {
       c: true,
       t: true,
       m: 'інкрустована дорогоцінними каменями чаша, вартістю мінімум 1000 зм, яка поглинається заклинанням',
     },
-    duration: 'Миттєва',
+    castTime: 600,
+    duration: 86400,
+    numberOfTargets: 20,
     highLvl: {
       has: false,
       description: '',
       effect: '',
     },
     concentration: false,
-    targets: 12,
+    target: 'істоти',
     freeWay: true,
     self: false,
     area: '',
     saveThough: '',
     attack: '',
     ritual: false,
-    actionType: 'Виклик',
+    actionType: Action.LongTerm,
     damageType: [],
   },
 
@@ -194,27 +227,29 @@ const spells: { [key: string]: ISpell } = {
     school: 'огородження',
     description:
       'Від тебе виходить аура, яка захищає життя, з радіусом 6 метрів. Доки заклинання триває, аура пересувається разом з тобою, залишаючись з центром на тобі. Всі неворожі істоти в аурі (включаючи тебе) отримують опір до ушкоджень некротичною енергією, і максимум їхнього здоров’я не може зменшуватися. Крім того, неворожі живі істоти, які починають хід в цій аурі з 0 здоров’я, відновлюють собі по 1 здоров’я.',
-    distance: 'На себе',
+    distance: 6,
     components: {
       c: true,
       t: false,
       m: '',
     },
-    duration: 'До 10 хвилин',
+    castTime: 0,
+    duration: 600,
     highLvl: {
       has: false,
       description: '',
       effect: '',
     },
     concentration: true,
-    targets: 0,
+    target: 'на себе',
+    numberOfTargets: Infinity,
     freeWay: true,
     self: true,
     area: '6-метровий радіус',
     saveThough: '',
     attack: '',
     ritual: false,
-    actionType: 'Дія',
+    actionType: Action.Action,
     damageType: [],
   },
 
@@ -230,21 +265,23 @@ const spells: { [key: string]: ISpell } = {
       t: true,
       m: 'щіпка цвинтарної землі',
     },
-    duration: '1 година',
+    duration: 3600,
+    castTime: 0,
     highLvl: {
       has: false,
       description: '',
       effect: '',
     },
     concentration: true,
-    targets: 1,
+    target: 'істота',
+    numberOfTargets: 1,
     freeWay: false,
     self: false,
     area: '',
     saveThough: '',
     attack: '',
     ritual: true,
-    actionType: 'Дія',
+    actionType: Action.Action,
     damageType: [],
   },
 };
@@ -262,7 +299,14 @@ enum Class {
 }
 
 const ClassSpells: { [key: string]: Array<Spell> } = {
+  [Class.Artificer]: [],
   [Class.Bard]: [Spell.Fireball, Spell.Bless, Spell.AuraOfLife],
+  [Class.Cleric]: [],
+  [Class.Druid]: [Spell.Fireball],
+  [Class.Paladin]: [Spell.Fireball, Spell.HeroesFeast, Spell.DetectMagic],
+  [Class.Ranger]: [Spell.Fireball],
+  [Class.Sorcerer]: [Spell.Fireball],
+  [Class.Warlock]: [Spell.Fireball],
   [Class.Wizard]: [
     Spell.Fireball,
     Spell.Bless,
@@ -270,9 +314,8 @@ const ClassSpells: { [key: string]: Array<Spell> } = {
     Spell.FeignDeath,
     Spell.DivineFavor,
   ],
-  [Class.Paladin]: [Spell.HeroesFeast, Spell.DetectMagic],
 };
 
-export default { Spell, spells, Class, ClassSpells };
+export default { Spell, spells, Class, ClassSpells, Action, MagicSchool };
 
-export { Spell, spells, Class, ClassSpells };
+export { Spell, spells, Class, ClassSpells, Action, MagicSchool };

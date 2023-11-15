@@ -1,27 +1,27 @@
 <script setup lang="ts">
-  import SpellCard from '@/components/SpellCard.vue';
-  import BurgerBtn from '@/components/BurgerBtn.vue';
   import SideMenu from '@/components/SideMenu.vue';
-  import { ISpell, Spell, spells } from '@/SpellList';
+  import BurgerBtn from '@/components/BurgerBtn.vue';
   import useAppStore from '@/stores/appStore';
-  import '@/style.css';
-  import 'reset-css';
 
   const appStore = useAppStore();
 
-  // console.log(spells);
-  const list: [Spell, ISpell][] = Object.entries(spells) as [Spell, ISpell][];
+  const closeMenu = () => {
+    appStore.closeMenu();
+  };
 </script>
 
 <template>
-  <SideMenu :is-open="appStore.menuIsOpen" />
+  <SideMenu :is-open="appStore.menuIsOpen" @handle-click="closeMenu" />
   <BurgerBtn class="menu-btn" :is-open="appStore.menuIsOpen" @handle-click="appStore.toggleMenu" />
-  <SpellCard v-for="[id, spell] in list" :id="id" :key="id" :spell="spell" />
+  <router-view></router-view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
   .menu-btn {
-    position: absolute;
-    right: 10px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+
+    z-index: 2;
   }
 </style>

@@ -5,7 +5,7 @@
     "paths": {
       "@/*": ["./src/*"],
     },
-    "target": "ESNext",
+//    "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "node",
@@ -15,11 +15,24 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "dom"],
+//    "lib": ["ESNext", "dom"],
     "skipLibCheck": true,
 
     // TODO
-    "noImplicitAny": false
+    "noImplicitAny": false,
+
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    /* Bundler mode */
+//    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["env.d.ts", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules"],

@@ -2,13 +2,55 @@
   import { computed } from 'vue';
   import ConcentrationIcon from '@/assets/concentration.png';
   import RitualIcon from '@/assets/ritual.png';
-  import { ISpell, Spell } from '@/SpellList';
-  import getImgUrl from '@/SpellIcon';
+  import ActionIcon from '@/assets/action.png';
+  import BonusActionIcon from '@/assets/bonus-action.png';
+  import DurationIcon from '@/assets/duration.png';
+  // import LogsIcon from '@/assets/logs.png';
+  import DiamondIcon from '@/assets/diamond.png';
+  import { Spell, Action, spells } from '@/SpellList';
+  import getSpellImgUrl from '@/SpellIcon';
+  import { convertTimeToText, convertDistanceToText, getClassList } from '@/utils.ts';
+  // import useAppStore from '@/stores/appStore';
 
-  const props = defineProps<{ spell: ISpell; id: Spell }>();
+  const props = defineProps<{ id: Spell }>();
 
-  const spellIcon = computed(() => getImgUrl(props.id));
-  const comps = computed(() => Object.keys(props.spell.components).join(', ').toUpperCase());
+  const spell = computed(() => spells[props.id]);
+  const spellIcon = computed(() => getSpellImgUrl(props.id));
+  const actionIconUrl = computed(() => {
+    switch (Action[spell.value.actionType]) {
+      case Action.Action:
+        return ActionIcon;
+      case Action.BonusAction:
+        return BonusActionIcon;
+      case Action.LongTerm:
+        return DurationIcon;
+
+      default:
+        return '';
+    }
+  });
+
+  const actionTitle = computed(() => {
+    switch (Action[spell.value.actionType]) {
+      case Action.Action:
+        return 'Дія';
+      case Action.BonusAction:
+        return 'Додаткова дія';
+
+      default:
+        return '';
+    }
+  });
+
+  const duration = computed(() =>
+    convertTimeToText(spell.value.duration, spell.value.concentration),
+  );
+  const comps = computed(() => Object.keys(spell.value.components).join(', ').toUpperCase());
+
+  // const select = () => {
+  //   //
+  // };
+  // useAppStore
 </script>
 
 <template>
@@ -22,13 +64,19 @@
     </div>
     <div class="info">
       <div class="cast-time">
-        <div class="title">Час касту</div>
-        <div class="content">{{ spell.actionType }}</div>
+        <div class="title">Час виконання</div>
+        <div v-if="!spell.castTime" class="content">
+          <img :src="actionIconUrl" />{{ actionTitle }}
+        </div>
+        <div v-if="spell.castTime" class="content">
+          <img :src="actionIconUrl" />{{ convertTimeToText(spell.castTime) }}
+        </div>
+        <!--        <div class="content">{{ spell.actionType }}</div>-->
         <img v-if="spell.ritual" class="ritual" :src="RitualIcon" />
       </div>
       <div class="cast-range">
-        <div class="title">Діапазон</div>
-        <div class="content">{{ spell.distance }}</div>
+        <div class="title">Дистанція</div>
+        <div class="content">{{ convertDistanceToText(spell.distance) }}</div>
       </div>
       <div class="components">
         <div class="title">Складові</div>
@@ -36,28 +84,41 @@
       </div>
       <div class="duration">
         <div class="title">Тривалість</div>
-        <div class="content">{{ spell.duration }}</div>
+        <div class="content">{{ duration }}</div>
         <img v-if="spell.concentration" class="concentration-img" :src="ConcentrationIcon" />
       </div>
     </div>
     <div class="description-block">
       <div class="description">{{ spell.description }}</div>
+      <div v-if="spell.components.m" class="material-component">
+        <img :src="DiamondIcon" />
+        <span><strong>Матеріальна складова: </strong>{{ spell.components.m }}</span>
+      </div>
     </div>
-    <div class="class-list">Бард, Клірік, Воїн</div>
+    <div class="class-list">{{ getClassList(id) }}</div>
+    <img class="spell-icon-bottom" :src="spellIcon" />
   </div>
 </template>
 
 <style scoped lang="scss">
-  //$bg-color: #3a2b24;
+  //$bg-color: red;
+
   $bg-color: #f1d7af;
+  //$border-color: #4b3b2f;
+  $border-color: indianred;
+
+  $class-list-color: #1c1c1c;
+  //$class-list-color: #e87a09;
 
   .card {
     width: 300px;
     height: 500px;
     border-radius: 5px;
-    background-color: indianred;
-    margin: 10px;
+    background-color: $border-color;
+    margin: 20px 0;
     padding: 5px 5px 0 5px;
+
+    position: relative;
   }
 
   .spell-name {
@@ -88,7 +149,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
-    background-color: indianred;
+    background-color: $border-color;
 
     & > div {
       margin: 2px;
@@ -108,13 +169,42 @@
   }
 
   .description-block {
-    padding: 5px;
+    //line-height: 14px;
+    font-size: 14px;
+
+    overflow: scroll;
+    padding: 10px;
     margin: 2px 2px 0 2px;
     background-color: $bg-color;
     //border: 4px solid #f1d7af;
     border-radius: 4px 4px 0 0;
 
-    height: 350px;
+    height: 340px;
+
+    position: relative;
+    .material-component {
+      display: flex;
+      align-items: center;
+      //line-height: 12px;
+      font-size: 12px;
+      background-color: bisque;
+      border-radius: 8px;
+      padding: 2px 4px;
+      margin: 15px 0;
+
+      //position: absolute;
+      bottom: 4px;
+      width: 260px;
+      img {
+        padding-right: 4px;
+      }
+
+      span {
+        strong {
+          font-weight: 800;
+        }
+      }
+    }
   }
 
   .title {
@@ -123,10 +213,15 @@
   }
   .content {
     font-size: 10px;
+    display: flex;
+    align-items: center;
   }
 
   .class-list {
     font-size: 12px;
+    color: $class-list-color;
+    //display: flex;
+    padding: 2px 0 0 3px;
   }
 
   .spell-icon {
@@ -146,5 +241,15 @@
     left: 5px;
     font-size: 10px;
     font-style: italic;
+  }
+
+  .spell-icon-bottom {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+
+    width: 30px;
+    border-radius: 50%;
+    //border-radius: 4px 0 0 4px;
   }
 </style>
