@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import useAppStore, { Route } from '@/stores/appStore';
+
   withDefaults(
     defineProps<{
       isOpen: boolean;
@@ -8,17 +10,27 @@
     },
   );
 
-  const emit = defineEmits(['handleClick']);
-  const click = () => {
-    emit('handleClick');
+  const appStore = useAppStore();
+
+  const openAllSpells = () => {
+    appStore.setRoute(Route.AllSpells);
+    appStore.closeMenu();
+  };
+  const openMySpells = () => {
+    appStore.setRoute(Route.MySpells);
+    appStore.closeMenu();
+  };
+  const openSkills = () => {
+    appStore.setRoute(Route.Skills);
+    appStore.closeMenu();
   };
 </script>
 
 <template>
   <div class="menu" :class="{ 'is-open': isOpen }">
-    <router-link to="/dnd-helper/" @click="click">Книга заклять</router-link>
-    <router-link to="/dnd-helper/all-spells" @click="click">Всі закляття</router-link>
-    <router-link to="/dnd-helper/skills" @click="click">Вміння</router-link>
+    <div @click="openMySpells">Книга заклять</div>
+    <div @click="openAllSpells">Всі закляття</div>
+    <div @click="openSkills">Вміння</div>
   </div>
 </template>
 
@@ -44,13 +56,14 @@
       transition: right 0.7s ease;
     }
 
-    a {
+    div {
+      cursor: pointer;
       font-weight: 800;
       font-size: 24px;
       width: 180px;
       height: 80px;
       background-color: white;
-      //border: 1px solid green;
+
       border-radius: 10px;
       margin: 30px 10px;
 

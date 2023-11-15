@@ -1,12 +1,21 @@
 import { defineStore } from 'pinia';
 
 import { Ref, ref } from 'vue';
-import { Spell } from '@/SpellList.ts';
+import { Spell } from '@/SpellList';
 
+export enum Route {
+  MySpells,
+  AllSpells,
+  Skills,
+}
 const useAppStore = defineStore('app', () => {
+  const route: Ref<Route> = ref(Route.MySpells);
   const menuIsOpen: Ref<boolean> = ref(false);
   const selectedSpells: Ref<Array<Spell>> = ref([]);
 
+  const setRoute = (r: Route) => {
+    route.value = r;
+  };
   const toggleMenu = () => {
     menuIsOpen.value = !menuIsOpen.value;
   };
@@ -22,8 +31,11 @@ const useAppStore = defineStore('app', () => {
   };
 
   return {
+    route,
+
     menuIsOpen,
     selectedSpells,
+    setRoute,
     closeMenu,
     toggleMenu,
     addSpell,

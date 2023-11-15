@@ -1,19 +1,21 @@
 <script setup lang="ts">
   import SideMenu from '@/components/SideMenu.vue';
   import BurgerBtn from '@/components/BurgerBtn.vue';
-  import useAppStore from '@/stores/appStore';
+  import Skills from '@/components/Skills.vue';
+  import AllSpells from '@/components/AllSpells.vue';
+  import MySpells from '@/components/MySpells.vue';
+  import useAppStore, { Route } from '@/stores/appStore';
 
   const appStore = useAppStore();
-
-  const closeMenu = () => {
-    appStore.closeMenu();
-  };
 </script>
 
 <template>
-  <SideMenu :is-open="appStore.menuIsOpen" @handle-click="closeMenu" />
+  <SideMenu :is-open="appStore.menuIsOpen" />
   <BurgerBtn class="menu-btn" :is-open="appStore.menuIsOpen" @handle-click="appStore.toggleMenu" />
-  <router-view></router-view>
+
+  <MySpells v-if="appStore.route === Route.MySpells" />
+  <AllSpells v-if="appStore.route === Route.AllSpells" />
+  <Skills v-if="appStore.route === Route.Skills" />
 </template>
 
 <style scoped lang="scss">

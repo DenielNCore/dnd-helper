@@ -1,7 +1,6 @@
 <script setup lang="ts">
-  import useAppStore from '@/stores/appStore';
+  import useAppStore, { Route } from '@/stores/appStore';
   import { toRefs } from 'vue';
-  import { useRouter } from 'vue-router';
   import SpellCard from '@/components/SpellCard.vue';
   import { Spell } from '@/SpellList';
 
@@ -16,22 +15,17 @@
   const appStore = useAppStore();
   const { selectedSpells } = toRefs(appStore);
 
-  const router = useRouter();
-
   if (!selectedSpells.value.length) {
-    router.push({
-      path: '/dnd-helper/all-spells',
-    });
-    console.warn('redirected to spell list');
+    appStore.setRoute(Route.AllSpells);
+
+    console.info('redirected to spell list');
   }
   const removeSpell = (id: Spell) => {
     appStore.removeSpell(id);
 
     if (!selectedSpells.value.length) {
-      // const router = useRouter();
-      router.push({
-        path: '/dnd-helper/all-spells',
-      });
+      appStore.setRoute(Route.AllSpells);
+
       console.warn('redirected to spell list');
     }
   };
