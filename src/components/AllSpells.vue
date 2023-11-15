@@ -16,18 +16,24 @@
 </script>
 
 <template>
-  <div v-for="id in list" :key="id" class="card-container">
-    <SpellCard :id="id" />
-    <div v-if="appStore.selectedSpells.includes(id)" class="check-added">
-      <img :src="CheckIcon" />
-    </div>
-    <div v-if="!appStore.selectedSpells.includes(id)" class="add-btn" @click="() => addSpell(id)">
-      Додати
+  <div class="all-spells">
+    <div v-for="id in list" :key="id" class="card-container">
+      <SpellCard :id="id" />
+      <div v-if="appStore.selectedSpells.includes(id)" class="check-added">
+        <img :src="CheckIcon" />
+      </div>
+      <div v-if="!appStore.selectedSpells.includes(id)" class="add-btn" @click="() => addSpell(id)">
+        Додати
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+  .all-spells {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .card-container {
     position: relative;
     width: 350px;
