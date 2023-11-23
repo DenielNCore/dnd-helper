@@ -15,9 +15,21 @@ enum Action {
   LongTerm = 'LongTerm',
 }
 
+enum Lvl {
+  Zero = 0,
+  One = 1,
+  Two = 2,
+  Three = 3,
+  Four = 4,
+  Five = 5,
+  Six = 6,
+  Seven = 7,
+  Eight = 8,
+  Nine = 9,
+}
 export interface ISpell {
   name: string;
-  lvl: number;
+  lvl: Lvl;
 
   school: string;
   // school: MagicSchool;
@@ -316,6 +328,44 @@ const ClassSpells: { [key: string]: Array<Spell> } = {
   ],
 };
 
-export default { Spell, spells, Class, ClassSpells, Action, MagicSchool };
+// const ClassSpellsMap: Map<Class, Array<Spell>> = new Map();
+// ClassSpellsMap.set(Class.Artificer, []);
+// ClassSpellsMap.set(Class.Bard, [Spell.Fireball, Spell.Bless, Spell.AuraOfLife]);
+// ClassSpellsMap.set(Class.Cleric, []);
+// ClassSpellsMap.set(Class.Druid, [Spell.Fireball]);
+// ClassSpellsMap.set(Class.Paladin, [Spell.Fireball, Spell.HeroesFeast, Spell.DetectMagic]);
+// ClassSpellsMap.set(Class.Ranger, [Spell.Fireball]);
+// ClassSpellsMap.set(Class.Sorcerer, [Spell.Fireball]);
+// ClassSpellsMap.set(Class.Warlock, [Spell.Fireball]);
+// ClassSpellsMap.set(Class.Wizard, [
+//   Spell.Fireball,
+//   Spell.Bless,
+//   Spell.AuraOfLife,
+//   Spell.FeignDeath,
+//   Spell.DivineFavor,
+// ]);
 
-export { Spell, spells, Class, ClassSpells, Action, MagicSchool };
+const classList = [
+  // Class.Artificer,
+  Class.Bard,
+  Class.Cleric,
+  Class.Druid,
+  Class.Paladin,
+  Class.Ranger,
+  Class.Sorcerer,
+  Class.Warlock,
+  Class.Wizard,
+];
+
+export default {
+  Spell,
+  spells,
+  Class,
+  Lvl,
+  ClassSpells,
+  Action,
+  MagicSchool,
+  classList,
+};
+
+export { Spell, spells, Class, Lvl, ClassSpells, Action, MagicSchool, classList };
