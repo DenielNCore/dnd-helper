@@ -15,9 +15,21 @@ enum Action {
   LongTerm = 'LongTerm',
 }
 
+enum Lvl {
+  Zero = 0,
+  One = 1,
+  Two = 2,
+  Three = 3,
+  Four = 4,
+  Five = 5,
+  Six = 6,
+  Seven = 7,
+  Eight = 8,
+  Nine = 9,
+}
 export interface ISpell {
   name: string;
-  lvl: number;
+  lvl: Lvl;
 
   school: string;
   // school: MagicSchool;
@@ -349,10 +361,11 @@ export default {
   Spell,
   spells,
   Class,
+  Lvl,
   ClassSpells,
   Action,
   MagicSchool,
   classList,
 };
 
-export { Spell, spells, Class, ClassSpells, Action, MagicSchool, classList };
+export { Spell, spells, Class, Lvl, ClassSpells, Action, MagicSchool, classList };

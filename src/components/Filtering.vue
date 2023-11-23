@@ -1,13 +1,14 @@
 <script setup lang="ts">
-  import { computed, ComputedRef, toRefs } from 'vue';
+  import { computed, ComputedRef, ref, Ref, toRefs } from 'vue';
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
   import { Class, classList } from '@/SpellList';
-  import { ClassesMap } from '@/SpellMapping';
+  import { ClassesMap, LvlMap } from '@/SpellMapping';
+  import CollectingDropdown from '@/components/CollectingDropdown.vue';
 
   const spellFilteringStore = useSpellFilteringStore();
 
-  const { toggleClass, clearClass } = spellFilteringStore;
-  const { selectedClasses } = toRefs(spellFilteringStore);
+  const { toggleClass, clearClass, updateLvlFilter } = spellFilteringStore;
+  const { selectedClasses, selectedLvls } = toRefs(spellFilteringStore);
 
   const classListFilters: ComputedRef<
     Array<{ name: string; selected: boolean; toggle: () => void }>
@@ -52,7 +53,12 @@
     </div>
 
     <div class="main-filtering">
-      <div class="lvl-filtering"></div>
+      <CollectingDropdown
+        :options-map="LvlMap"
+        :selected-options="selectedLvls"
+        title="Рівень закляття"
+        @update-selected="updateLvlFilter"
+      />
     </div>
   </div>
 </template>
@@ -60,17 +66,14 @@
 <style scoped lang="scss">
   .all-spells-filtering {
     margin: 0 auto;
-    height: 200px;
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-    background-color: #ccc;
+    background-color: rgba(0, 0, 0, 0.04);
 
     .class-filtering {
       width: 100%;
       display: flex;
       border: 1px dashed black;
+
+      margin-top: 50px;
 
       .single-class-filter-list {
         width: 100%;
@@ -110,6 +113,10 @@
           }
         }
       }
+    }
+
+    .main-filtering {
+      display: flex;
     }
   }
 </style>

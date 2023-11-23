@@ -1,4 +1,4 @@
-import { Class, MagicSchool } from '@/SpellList';
+import { Class, MagicSchool, Lvl } from '@/SpellList';
 
 const SchoolsMap = {
   [MagicSchool.Abjuration]: 'Огородження',
@@ -21,7 +21,19 @@ const ClassesMap = {
   [Class.Warlock]: 'Чаклун',
   [Class.Wizard]: 'Чарівник',
 };
+const LvlMap = {
+  [Lvl.Zero]: 'замовляння',
+  [Lvl.One]: '1-ий',
+  [Lvl.Two]: '2-ий',
+  [Lvl.Three]: '3-ий',
+  [Lvl.Four]: '4-ий',
+  [Lvl.Five]: '5-ий',
+  [Lvl.Six]: '6-ий',
+  [Lvl.Seven]: '7-ий',
+  [Lvl.Eight]: '8-ий',
+  [Lvl.Nine]: '9-ий',
+};
 
-export default { SchoolsMap, ClassesMap };
+export default { SchoolsMap, ClassesMap, LvlMap };
 
-export { SchoolsMap, ClassesMap };
+export { SchoolsMap, ClassesMap, LvlMap };
