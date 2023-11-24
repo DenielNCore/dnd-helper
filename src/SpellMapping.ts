@@ -1,4 +1,4 @@
-import { Class, MagicSchool, Lvl } from '@/SpellList';
+import { MagicSchool, Lvl, Class, Action } from '@/types/spell';
 
 const SchoolsMap = {
   [MagicSchool.Abjuration]: 'Огородження',
@@ -34,6 +34,12 @@ const LvlMap = {
   [Lvl.Nine]: '9-ий',
 };
 
-export default { SchoolsMap, ClassesMap, LvlMap };
+const ActionMap = {
+  [Action.Action]: 'Дія',
+  [Action.BonusAction]: 'Бонусна дія',
+  [Action.LongTerm]: 'Довготривале',
+};
 
-export { SchoolsMap, ClassesMap, LvlMap };
+export default { SchoolsMap, ClassesMap, LvlMap, ActionMap };
+
+export { SchoolsMap, ClassesMap, LvlMap, ActionMap };

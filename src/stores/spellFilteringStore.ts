@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
 import { computed, ComputedRef, Ref, ref } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
-import { Class, Spell, spells, ClassSpells, Lvl } from '@/SpellList';
+import { Lvl, Class, Spell } from '@/types/spell';
+import { spells, ClassSpells } from '@/SpellList';
 
 const useSpellFilteringStore = defineStore('spellFiltering', () => {
   // useLocalStorage for storing all filtering in local storage

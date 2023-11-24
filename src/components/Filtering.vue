@@ -1,7 +1,8 @@
 <script setup lang="ts">
-  import { computed, ComputedRef, ref, Ref, toRefs } from 'vue';
+  import { computed, ComputedRef, toRefs } from 'vue';
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
-  import { Class, classList } from '@/SpellList';
+  import { Class } from '@/types/spell';
+  import { classList } from '@/SpellList';
   import { ClassesMap, LvlMap } from '@/SpellMapping';
   import CollectingDropdown from '@/components/CollectingDropdown.vue';
 
