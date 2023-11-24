@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
-
 import { Ref, ref } from 'vue';
-import { Spell } from '@/SpellList';
+import { Spell } from '@/types/spell';
 
 export enum Route {
   MySpells,
