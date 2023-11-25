@@ -48,11 +48,11 @@
   }
   .card-container {
     position: relative;
-    margin: 20px 0;
+    margin: 20px 10px;
     align-items: center;
 
     &.row-size {
-      margin: 10px 0;
+      margin: 10px;
     }
     &.icon-size {
       margin: 10px 5px;
