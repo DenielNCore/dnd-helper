@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import useAppStore, { Route } from '@/stores/appStore';
+  import LoginForm from '@/components/LoginForm.vue';
 
   withDefaults(
     defineProps<{
@@ -31,6 +32,7 @@
     <div @click="openMySpells">Книга заклять</div>
     <div @click="openAllSpells">Всі закляття</div>
     <div @click="openSkills">Вміння</div>
+    <LoginForm />
   </div>
 </template>
 
