@@ -33,7 +33,7 @@
 
 <template>
   <div v-for="id in selectedSpells" :key="id" class="card-container">
-    <SpellCard :id="id" />
+    <SpellCard :id="id" :spell-card-size="0" />
 
     <div
       v-if="appStore.selectedSpells.includes(id)"

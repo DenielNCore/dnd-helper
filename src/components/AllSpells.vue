@@ -1,13 +1,20 @@
 <script setup lang="ts">
-  import CheckIcon from '@/assets/check.png';
+  // import CheckIcon from '@/assets/check.png';
   import SpellCard from '@/components/SpellCard.vue';
   import Filtering from '@/components/Filtering.vue';
-  import useAppStore from '@/stores/appStore';
+  import SpellSizeSelector from '@/components/SpellSizeSelector.vue';
+  // import useAppStore from '@/stores/appStore';
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
+  import useSpellCardDesignStore from '@/stores/spellCardDesignStore';
   import { toRefs } from 'vue';
+  import { CardSize } from '@/types/spellCard';
 
-  const appStore = useAppStore();
-  const { addSpell } = appStore;
+  // const appStore = useAppStore();
+  // const { addSpell } = appStore;
+
+  const spellCardDesignStore = useSpellCardDesignStore();
+  const { selectedSpellCardSize } = toRefs(spellCardDesignStore);
+  const { setSpellCardSize } = spellCardDesignStore;
 
   const spellFilteringStore = useSpellFilteringStore();
   const { filteredSpellList } = toRefs(spellFilteringStore);
@@ -15,15 +22,19 @@
 
 <template>
   <Filtering />
+  <SpellSizeSelector :card-size="selectedSpellCardSize" @set-size="setSpellCardSize" />
+
   <div class="all-spells">
-    <div v-for="id in filteredSpellList" :key="id" class="card-container">
-      <SpellCard :id="id" />
-      <div v-if="appStore.selectedSpells.includes(id)" class="check-added">
-        <img :src="CheckIcon" />
-      </div>
-      <div v-if="!appStore.selectedSpells.includes(id)" class="add-btn" @click="() => addSpell(id)">
-        Додати
-      </div>
+    <div
+      v-for="id in filteredSpellList"
+      :key="id"
+      class="card-container"
+      :class="{
+        'row-size': selectedSpellCardSize === CardSize.Row,
+        'icon-size': selectedSpellCardSize === CardSize.Icon,
+      }"
+    >
+      <SpellCard :id="id" :spell-card-size="selectedSpellCardSize" />
     </div>
   </div>
 </template>
@@ -32,30 +43,19 @@
   .all-spells {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 30px;
+    margin-left: 20px;
   }
   .card-container {
     position: relative;
-    width: 350px;
-    margin-left: 20px;
-    display: flex;
+    margin: 20px 10px;
     align-items: center;
 
-    .check-added {
-      position: absolute;
-      top: 20px;
-      right: 5px;
+    &.row-size {
+      margin: 10px;
     }
-    .add-btn {
-      cursor: pointer;
-      width: 40px;
-      height: 200px;
-      font-size: 26px;
-      background-color: #ccc;
-      border-radius: 0 10px 10px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      writing-mode: vertical-rl;
+    &.icon-size {
+      margin: 10px 5px;
     }
   }
 </style>
