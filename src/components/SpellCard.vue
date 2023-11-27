@@ -7,11 +7,9 @@
   import DurationIcon from '@/assets/duration.png';
   // import LogsIcon from '@/assets/logs.png';
   import DiamondIcon from '@/assets/diamond.png';
-  import { Action, Spell } from '@/types/spell';
-  import { spells } from '@/SpellList';
-  import { ActionMap } from '@/SpellMapping';
+  import { Spell, Action, spells } from '@/SpellList';
   import getSpellImgUrl from '@/SpellIcon';
-  import { convertDistanceToText, convertTimeToText, getClassList } from '@/utils.ts';
+  import { convertTimeToText, convertDistanceToText, getClassList } from '@/utils.ts';
   // import useAppStore from '@/stores/appStore';
 
   const props = defineProps<{ id: Spell }>();
@@ -35,9 +33,9 @@
   const actionTitle = computed(() => {
     switch (Action[spell.value.actionType]) {
       case Action.Action:
-        return ActionMap[Action.Action];
+        return 'Дія';
       case Action.BonusAction:
-        return ActionMap[Action.BonusAction];
+        return 'Додаткова дія';
 
       default:
         return '';

@@ -24,7 +24,6 @@ module.exports = {
     'no-param-reassign': [1, { 'props': false }],
     // 'no-console': ['error', { 'allow': ['warn', 'error', 'info', 'table', 'time', 'timeStamp', 'timeEnd', 'timeLog', 'clear', 'group', 'groupCollapsed', 'groupEnd' ] }],
     'no-restricted-syntax': 1,
-    'no-unused-vars': "warn",
     'vue/multi-word-component-names': 'off'
   },
   'settings': {
