@@ -5,6 +5,8 @@
   import AllSpells from '@/components/AllSpells.vue';
   import MySpells from '@/components/MySpells.vue';
   import useAppStore, { Route } from '@/stores/appStore';
+  import 'reset-css';
+  import '@/style.css';
 
   const appStore = useAppStore();
 </script>

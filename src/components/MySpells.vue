@@ -2,7 +2,7 @@
   import useAppStore, { Route } from '@/stores/appStore';
   import { toRefs } from 'vue';
   import SpellCard from '@/components/SpellCard.vue';
-  import { Spell } from '@/SpellList';
+  import { Spell } from '@/types/spell';
 
   // withDefaults(
   //   defineProps<{

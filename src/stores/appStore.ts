@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-
 import { Ref, ref } from 'vue';
-import { Spell } from '@/SpellList';
+import { Spell } from '@/types/spell';
+import PocketDataBase from '@/api/PocketBase';
 
 export enum Route {
   MySpells,
@@ -9,6 +9,8 @@ export enum Route {
   Skills,
 }
 const useAppStore = defineStore('app', () => {
+  const db = new PocketDataBase();
+
   const route: Ref<Route> = ref(Route.MySpells);
   const menuIsOpen: Ref<boolean> = ref(false);
   const selectedSpells: Ref<Array<Spell>> = ref([]);
@@ -31,6 +33,7 @@ const useAppStore = defineStore('app', () => {
   };
 
   return {
+    db,
     route,
 
     menuIsOpen,
