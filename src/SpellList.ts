@@ -1,4 +1,66 @@
-import { Spell, Action, Class, ISpell } from '@/types/spell';
+enum MagicSchool {
+  Abjuration = 'Abjuration',
+  Conjuration = 'Conjuration',
+  Divination = 'Divination',
+  Enchantment = 'Enchantment',
+  Evocation = 'Evocation',
+  Illusion = 'Illusion',
+  Necromancy = 'Necromancy',
+  Transmutation = 'Transmutation',
+}
+
+enum Action {
+  Action = 'Action',
+  BonusAction = 'BonusAction',
+  LongTerm = 'LongTerm',
+}
+
+export interface ISpell {
+  name: string;
+  lvl: number;
+
+  school: string;
+  // school: MagicSchool;
+  actionType: Action;
+  castTime: number; // секунд
+  duration: number | 'Доки не буде розсіяне або не спрацює' | 'Доки не розсіється або не спрацює'; // секунд, 1 раунд = 6 секунд
+
+  distance: number | 'На себе' | 'Дотик'; // метрів
+  target: string;
+  numberOfTargets: number;
+
+  description: string;
+  components: {
+    c: boolean;
+    t: boolean;
+    m?: string;
+  };
+  highLvl: {
+    has: boolean;
+    from?: number;
+    description?: string;
+    effect?: string;
+  };
+  concentration: boolean;
+  freeWay: boolean;
+  self: boolean;
+  area: string;
+  saveThough: string;
+  attack: string;
+  ritual: boolean;
+
+  damageType: string[];
+}
+
+enum Spell {
+  AuraOfLife = 'AuraOfLife',
+  FeignDeath = 'FeignDeath',
+  HeroesFeast = 'HeroesFeast',
+  DivineFavor = 'DivineFavor',
+  Bless = 'Bless',
+  Fireball = 'Fireball',
+  DetectMagic = 'DetectMagic',
+}
 
 const spells: { [key: string]: ISpell } = {
   [Spell.Fireball]: {
@@ -224,6 +286,18 @@ const spells: { [key: string]: ISpell } = {
   },
 };
 
+enum Class {
+  Artificer = 'Artificer',
+  Bard = 'Bard',
+  Cleric = 'Cleric',
+  Druid = 'Druid',
+  Paladin = 'Paladin',
+  Ranger = 'Ranger',
+  Sorcerer = 'Sorcerer',
+  Warlock = 'Warlock',
+  Wizard = 'Wizard',
+}
+
 const ClassSpells: { [key: string]: Array<Spell> } = {
   [Class.Artificer]: [],
   [Class.Bard]: [Spell.Fireball, Spell.Bless, Spell.AuraOfLife],
@@ -242,39 +316,6 @@ const ClassSpells: { [key: string]: Array<Spell> } = {
   ],
 };
 
-// const ClassSpellsMap: Map<Class, Array<Spell>> = new Map();
-// ClassSpellsMap.set(Class.Artificer, []);
-// ClassSpellsMap.set(Class.Bard, [Spell.Fireball, Spell.Bless, Spell.AuraOfLife]);
-// ClassSpellsMap.set(Class.Cleric, []);
-// ClassSpellsMap.set(Class.Druid, [Spell.Fireball]);
-// ClassSpellsMap.set(Class.Paladin, [Spell.Fireball, Spell.HeroesFeast, Spell.DetectMagic]);
-// ClassSpellsMap.set(Class.Ranger, [Spell.Fireball]);
-// ClassSpellsMap.set(Class.Sorcerer, [Spell.Fireball]);
-// ClassSpellsMap.set(Class.Warlock, [Spell.Fireball]);
-// ClassSpellsMap.set(Class.Wizard, [
-//   Spell.Fireball,
-//   Spell.Bless,
-//   Spell.AuraOfLife,
-//   Spell.FeignDeath,
-//   Spell.DivineFavor,
-// ]);
+export default { Spell, spells, Class, ClassSpells, Action, MagicSchool };
 
-const classList = [
-  // Class.Artificer,
-  Class.Bard,
-  Class.Cleric,
-  Class.Druid,
-  Class.Paladin,
-  Class.Ranger,
-  Class.Sorcerer,
-  Class.Warlock,
-  Class.Wizard,
-];
-
-export default {
-  spells,
-  ClassSpells,
-  classList,
-};
-
-export { spells, ClassSpells, classList };
+export { Spell, spells, Class, ClassSpells, Action, MagicSchool };

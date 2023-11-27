@@ -13,9 +13,7 @@
     "format": "prettier --write --parser typescript \"src/**/*.(ts|js)\" && prettier --write --parser html \"src/**/*.(vue)\""
   },
   "dependencies": {
-    "@vueuse/core": "^10.6.1",
     "pinia": "^2.1.7",
-    "pocketbase": "^0.19.0",
     "reset-css": "^5.0.2",
     "vue": "^3.3.4"
   },

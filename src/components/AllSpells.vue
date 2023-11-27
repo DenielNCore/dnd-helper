@@ -1,22 +1,23 @@
 <script setup lang="ts">
   import CheckIcon from '@/assets/check.png';
   import SpellCard from '@/components/SpellCard.vue';
-  import Filtering from '@/components/Filtering.vue';
+  import { Spell, spells } from '@/SpellList';
   import useAppStore from '@/stores/appStore';
-  import useSpellFilteringStore from '@/stores/spellFilteringStore';
-  import { toRefs } from 'vue';
+  import '@/style.css';
+  import 'reset-css';
 
   const appStore = useAppStore();
-  const { addSpell } = appStore;
 
-  const spellFilteringStore = useSpellFilteringStore();
-  const { filteredSpellList } = toRefs(spellFilteringStore);
+  const list: Spell[] = Object.keys(spells) as Spell[];
+
+  const addSpell = (id: Spell) => {
+    appStore.addSpell(id);
+  };
 </script>
 
 <template>
-  <Filtering />
   <div class="all-spells">
-    <div v-for="id in filteredSpellList" :key="id" class="card-container">
+    <div v-for="id in list" :key="id" class="card-container">
       <SpellCard :id="id" />
       <div v-if="appStore.selectedSpells.includes(id)" class="check-added">
         <img :src="CheckIcon" />

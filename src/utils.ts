@@ -1,6 +1,5 @@
-import { Spell } from '@/types/spell';
-import { ClassSpells } from '@/SpellList';
-import { ClassesMap } from '@/SpellMapping';
+import { Spell, ClassSpells } from '@/SpellList.ts';
+import { ClassesMap } from '@/SpellMapping.ts';
 
 type StringIndexType = 0 | 1 | 2;
 const getStringIndex = (amount: number, before: boolean): StringIndexType => {
