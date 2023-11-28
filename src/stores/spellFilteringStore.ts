@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core';
 import { Lvl, Class, Spell, Action } from '@/types/spell';
 import { spells, ClassSpells } from '@/SpellList';
 
-interface SpellFilterCbI {
+interface SpellFilterFnI {
   (list: Spell[]): Spell[];
 }
 
@@ -29,7 +29,7 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     });
   });
 
-  const lvlFilter = (list: Spell[]) => {
+  const lvlFilter: SpellFilterFnI = list => {
     if (!selectedLvls.value.length) return list;
 
     return list.filter((sp: Spell) => {
@@ -46,12 +46,11 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
   };
 
   const filteredSpellList: ComputedRef<Array<Spell>> = computed(() => {
-    //['AuraOfLife', 'FeignDeath'...]
-    const list: Spell[] = [...classFilteredSpellList.value];
+    const list = [...classFilteredSpellList.value];
 
-    const filterFnList: Array<SpellFilterCbI> = [lvlFilter, actionFilter];
+    const filterFnList: Array<SpellFilterFnI> = [lvlFilter, actionFilter];
 
-    return filterFnList.reduce((acc: Spell[], fn: SpellFilterCbI) => fn(acc), list);
+    return filterFnList.reduce((acc: Spell[], fn: SpellFilterFnI) => fn(acc), list);
   });
 
   const toggleClass = (name: Class) => {
