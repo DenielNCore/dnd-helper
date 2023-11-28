@@ -8,19 +8,16 @@ interface SpellFilterCbI {
   (list: Spell[]): Spell[];
 }
 
-
 const useSpellFilteringStore = defineStore('spellFiltering', () => {
   // useLocalStorage for storing all filtering in local storage
   const selectedClasses: Ref<Array<Class>> = useLocalStorage('selectedCLass', []);
   const selectedLvls: Ref<Array<number>> = useLocalStorage('selectedLvl', []);
   const selectedActions: Ref<Array<string>> = useLocalStorage('selectedAction', []);
 
-
   const allSpellNames: ComputedRef<Array<Spell>> = computed(
     () =>
       Object.keys(spells).sort((a: string, b: string) => spells[a].lvl - spells[b].lvl) as Spell[],
   );
-
 
   const classFilteredSpellList: ComputedRef<Array<Spell>> = computed(() => {
     if (!selectedClasses.value.length) return allSpellNames.value;
@@ -32,7 +29,6 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     });
   });
 
-  
   const lvlFilter = (list: Spell[]) => {
     if (!selectedLvls.value.length) return list;
 
@@ -41,7 +37,6 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     });
   };
 
-  
   const actionFilter = (list: Spell[]) => {
     if (!selectedActions.value.length) return list;
 
@@ -51,6 +46,7 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
   };
 
   const filteredSpellList: ComputedRef<Array<Spell>> = computed(() => {
+    //['AuraOfLife', 'FeignDeath'...]
     const list: Spell[] = [...classFilteredSpellList.value];
 
     const filterFnList: Array<SpellFilterCbI> = [lvlFilter, actionFilter];
@@ -67,16 +63,12 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
       selectedClasses.value.push(name);
     }
 
-    useLocalStorage('selectedCLass', selectedLvls.value);
-    useLocalStorage('selectedAction', selectedActions.value);
-
+    useLocalStorage('selectedCLass', selectedClasses.value);
   };
 
   const clearClass = () => {
     selectedClasses.value.length = 0;
-    useLocalStorage('selectedCLass', selectedLvls.value);
-    useLocalStorage('selectedAction', selectedActions.value);
-
+    useLocalStorage('selectedCLass', selectedClasses.value);
   };
 
   const updateLvlFilter = (list: Array<Lvl>) => {
@@ -98,7 +90,6 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
 
     useLocalStorage('selectedAction', list);
   };
-
 
   return {
     selectedClasses,
