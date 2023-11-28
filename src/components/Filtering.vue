@@ -3,13 +3,14 @@
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
   import { Class } from '@/types/spell';
   import { classList } from '@/SpellList';
-  import { ClassesMap, LvlMap } from '@/SpellMapping';
+  import { ClassesMap, LvlMap, ActionMap } from '@/SpellMapping';
   import CollectingDropdown from '@/components/CollectingDropdown.vue';
 
   const spellFilteringStore = useSpellFilteringStore();
 
-  const { toggleClass, clearClass, updateLvlFilter } = spellFilteringStore;
-  const { selectedClasses, selectedLvls } = toRefs(spellFilteringStore);
+  const { toggleClass, clearClass, updateLvlFilter, updatedactionFilter } = spellFilteringStore;
+  const { selectedClasses, selectedLvls, selectedActions} = toRefs(spellFilteringStore);
+  
 
   const classListFilters: ComputedRef<
     Array<{ name: string; selected: boolean; toggle: () => void }>
@@ -59,6 +60,12 @@
         :selected-options="selectedLvls"
         title="Рівень закляття"
         @update-selected="updateLvlFilter"
+      />
+      <CollectingDropdown
+        :options-map="ActionMap"
+        :selected-options="selectedActions"
+        title="Час виконання"
+        @update-selected="updatedactionFilter"
       />
     </div>
   </div>
