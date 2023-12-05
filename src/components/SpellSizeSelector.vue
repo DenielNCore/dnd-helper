@@ -1,14 +1,11 @@
 <script setup lang="ts">
-  import { CardSize } from '@/types/spellCard';
+import { CardSize } from '@/types/spellCard';
+import SVGIcon from './SVGIcon.vue';
+import { Type } from '@/types/iconTypes';
 
-  const props = withDefaults(
-    defineProps<{
-      cardSize: CardSize;
-    }>(),
-    {
-      cardSize: CardSize.Full,
-    },
-  );
+  const props = defineProps<{
+    cardSize: CardSize;
+  }>();
 
   const emit = defineEmits<{
     (e: 'setSize', size: CardSize): void;
@@ -19,22 +16,15 @@
   };
 
   const options = [
-    { text: '0', value: CardSize.Full },
-    { text: '1', value: CardSize.Row },
-    { text: '2', value: CardSize.Icon },
+    { type: Type.clipboard, value: CardSize.Full },
+    { type: Type.listUl, value: CardSize.Row },
+    { type: Type.tableCells, value: CardSize.Icon },
   ];
 </script>
 
 <template>
   <div class="spell-card-size-container">
-    <div
-      v-for="option in options"
-      :key="option.value"
-      :class="{ selected: props.cardSize === option.value }"
-      @click="() => click(option.value)"
-    >
-      {{ option.text }}
-    </div>
+    <SVGIcon v-for="option in options" :type="option.type" @click="() => click(option.value)" />
   </div>
 </template>
 
