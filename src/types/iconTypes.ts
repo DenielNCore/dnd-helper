@@ -1,9 +1,9 @@
 enum Type {
-    clipboard = 'clipboard',
-    listUl = 'listUl',
-    tableCells = 'tableCells',
-} 
-
+  clipboard = 'clipboard',
+  listUl = 'listUl',
+  tableCells = 'tableCells',
+  none = 'none',
+}
 
 export default { Type };
 

@@ -9,7 +9,7 @@
     defineProps<{
       type: Type;
     }>(),
-    { type: Type.clipboard },
+    { type: Type.none },
   );
 
   const Icon = computed(() => {
@@ -20,6 +20,8 @@
         return ListUl;
       case Type.tableCells:
         return TableCell;
+      default:
+        return null;
     }
   });
 </script>
