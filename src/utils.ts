@@ -1,4 +1,4 @@
-import { Spell } from '@/types/spell';
+import { Spell } from '@/types/spells';
 import { ClassSpells } from '@/SpellList';
 import { ClassesMap } from '@/SpellMapping';
 
@@ -71,12 +71,14 @@ const convertTimeToText = (
   return time;
 };
 
+const metrics = ['метр', 'метри', 'метрів'];
+
 const convertDistanceToText = (distance: number | 'На себе' | 'Дотик') => {
   if (typeof distance === 'string') return distance;
 
   if (distance >= 1000) return `${distance / 1000} кіломатрів`;
 
-  return `${distance} метрів`;
+  return `${distance} ${metrics[getStringIndex(distance, false)]}`;
 };
 
 const getClassList = (spellId: Spell) => {

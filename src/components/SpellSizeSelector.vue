@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { CardSize } from '@/types/spellCard';
-import SVGIcon from './SVGIcon.vue';
-import { Type } from '@/types/iconTypes';
+  import { CardSize } from '@/types/spellCard';
+  import { Type } from '@/types/iconTypes';
+  import SVGIcon from './SVGIcon.vue';
 
-  const props = defineProps<{
+  defineProps<{
     cardSize: CardSize;
   }>();
 
@@ -24,7 +24,13 @@ import { Type } from '@/types/iconTypes';
 
 <template>
   <div class="spell-card-size-container">
-    <SVGIcon v-for="option in options" :type="option.type" @click="() => click(option.value)" />
+    <div
+      v-for="option in options"
+      :key="option.type"
+      :class="{ selected: cardSize === option.value }"
+    >
+      <SVGIcon :type="option.type" @click="() => click(option.value)" />
+    </div>
   </div>
 </template>
 
@@ -36,10 +42,11 @@ import { Type } from '@/types/iconTypes';
     position: absolute;
     display: flex;
 
-    > div {
+    div {
       width: 20px;
       padding: 5px;
       text-align: center;
+      border-radius: 5px;
 
       &.selected {
         background-color: #f1f1f1;

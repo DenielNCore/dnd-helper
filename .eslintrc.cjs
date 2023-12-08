@@ -22,9 +22,13 @@ module.exports = {
     'no-continue': 0,
     'no-fallthrough': 0,
     'no-param-reassign': [1, { 'props': false }],
-    // 'no-console': ['error', { 'allow': ['warn', 'error', 'info', 'table', 'time', 'timeStamp', 'timeEnd', 'timeLog', 'clear', 'group', 'groupCollapsed', 'groupEnd' ] }],
+    'no-console': ['error', { 'allow': ['warn', 'error', 'info', 'table', 'time', 'timeStamp', 'timeEnd', 'timeLog', 'clear', 'group', 'groupCollapsed', 'groupEnd' ] }],
     'no-restricted-syntax': 1,
-    'no-unused-vars': "warn",
+    "@typescript-eslint/no-explicit-any": "off",
+    "unused-imports/no-unused-imports": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    'no-unused-vars': "off",
+    "@typescript-eslint/no-unused-vars": "off",
     'vue/multi-word-component-names': 'off'
   },
   'settings': {

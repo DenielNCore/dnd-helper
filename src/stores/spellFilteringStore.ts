@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
 import { computed, ComputedRef, Ref, ref } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
-import { Lvl, Class, Spell, Action } from '@/types/spell';
-import { spells, ClassSpells } from '@/SpellList';
+import { Lvl, Class, Action } from '@/types/spell';
+import { Spell } from '@/types/spells';
+import { ClassSpells } from '@/SpellList';
+import spells from '@/spells';
 
 interface SpellFilterFnI {
   (list: Spell[]): Spell[];
@@ -33,7 +35,7 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     if (!selectedLvls.value.length) return list;
 
     return list.filter((sp: Spell) => {
-      return selectedLvls.value.includes(spells[sp].lvl);
+      return selectedLvls.value.includes(spells[sp]!.lvl);
     });
   };
 
@@ -41,7 +43,7 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     if (!selectedActions.value.length) return list;
 
     return list.filter((sp: Spell) => {
-      return selectedActions.value.includes(spells[sp].actionType);
+      return selectedActions.value.includes(spells[sp]!.actionType);
     });
   };
 
