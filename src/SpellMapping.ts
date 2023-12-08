@@ -22,7 +22,7 @@ const ClassesMap = {
   [Class.Wizard]: 'Чарівник',
 };
 const LvlMap = {
-  [Lvl.Zero]: 'замовляння',
+  [Lvl.Zero]: 'Замовляння',
   [Lvl.One]: '1-ий',
   [Lvl.Two]: '2-ий',
   [Lvl.Three]: '3-ий',

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Ref, ref } from 'vue';
-import { Spell } from '@/types/spell';
+import { Spell } from '@/types/spells';
 import PocketDataBase from '@/api/PocketBase';
 
 export enum Route {

@@ -1,22 +1,23 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
+  import { computed, ComputedRef } from 'vue';
   import ConcentrationIcon from '@/assets/concentration.png';
   import RitualIcon from '@/assets/ritual.png';
   import ActionIcon from '@/assets/action.png';
   import BonusActionIcon from '@/assets/bonus-action.png';
   import DurationIcon from '@/assets/duration.png';
   import DiamondIcon from '@/assets/diamond.png';
-  import { Action, Spell } from '@/types/spell';
-  import { spells } from '@/SpellList';
-  import { ActionMap } from '@/SpellMapping';
-  import getSpellImgUrl from '@/SpellIcon';
+  import { Action, ISpell } from '@/types/spell';
+  import { Spell } from '@/types/spells';
+  import spells from '@/spells';
+  import { ActionMap, SchoolsMap, LvlMap } from '@/SpellMapping';
   import { convertDistanceToText, convertTimeToText, getClassList } from '@/utils';
   import { CardSize } from '@/types/spellCard';
+  import SpellIcon from '@/components/SpellIcon.vue';
 
   const props = defineProps<{ id: Spell; spellCardSize: CardSize }>();
 
-  const spell = computed(() => spells[props.id]);
-  const spellIcon = computed(() => getSpellImgUrl(props.id));
+  const spell: ComputedRef<ISpell> = computed(() => spells[props.id]!);
+  // const spellIcon = computed(() => getSpellImgUrl(props.id));
   const actionIconUrl = computed(() => {
     switch (Action[spell.value.actionType]) {
       case Action.Action:
@@ -44,7 +45,7 @@
   });
 
   const duration = computed(() =>
-    convertTimeToText(spell.value.duration, spell.value.concentration),
+    convertTimeToText(spell.value.duration, spell.value.canEndEarlier),
   );
   const comps = computed(() => Object.keys(spell.value.components).join(', ').toUpperCase());
 </script>
@@ -52,7 +53,8 @@
 <template>
   <div class="card" :class="{ hide: spellCardSize === CardSize.Icon }">
     <div class="spell-title">
-      <img class="spell-icon" :src="spellIcon" />
+      <!--      <img class="spell-icon" :src="spellIcon" />-->
+      <SpellIcon class="spell-icon" :type="id" />
       <div class="spell-level-small" :class="{ hide: spellCardSize !== CardSize.Full }">
         {{ spell.lvl }}
       </div>
@@ -61,7 +63,7 @@
       </div>
     </div>
     <div class="spell-level" :class="{ hide: spellCardSize !== CardSize.Full }">
-      {{ `Рівень ${spell.lvl} ${spell.school}` }}
+      {{ `${spell.lvl ? 'Рівень ' : ''}${LvlMap[spell.lvl]} ${SchoolsMap[spell.school]}` }}
     </div>
 
     <div class="spell-content" :class="{ hide: spellCardSize !== CardSize.Full }">

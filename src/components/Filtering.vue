@@ -9,8 +9,7 @@
   const spellFilteringStore = useSpellFilteringStore();
 
   const { toggleClass, clearClass, updateLvlFilter, updatedactionFilter } = spellFilteringStore;
-  const { selectedClasses, selectedLvls, selectedActions} = toRefs(spellFilteringStore);
-  
+  const { selectedClasses, selectedLvls, selectedActions } = toRefs(spellFilteringStore);
 
   const classListFilters: ComputedRef<
     Array<{ name: string; selected: boolean; toggle: () => void }>
