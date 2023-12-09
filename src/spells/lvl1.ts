@@ -1,5 +1,5 @@
 import { Action, ISpell, Source, MagicSchool } from '@/types/spell';
-import { Spell, Lvl1 } from '@/types/spells';
+import { Spell } from '@/types/spells';
 
 // const spells: Partial<Record<keyof typeof Spell, ISpell>> = {
 const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
