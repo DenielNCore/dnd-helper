@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { computed, ComputedRef } from 'vue';
+  import { computed, ComputedRef, ref } from 'vue';
   import ConcentrationIcon from '@/assets/concentration.png';
   import RitualIcon from '@/assets/ritual.png';
   import ActionIcon from '@/assets/action.png';
@@ -16,6 +16,12 @@
 
   const props = defineProps<{ id: Spell; spellCardSize: CardSize }>();
 
+  const isOpen = ref(false);
+
+  const toggle = () => {
+    isOpen.value = !isOpen.value;
+  };
+  const size = computed(() => (isOpen.value ? CardSize.Full : props.spellCardSize));
   const spell: ComputedRef<ISpell> = computed(() => spells[props.id]!);
   // const spellIcon = computed(() => getSpellImgUrl(props.id));
   const actionIconUrl = computed(() => {
@@ -51,22 +57,22 @@
 </script>
 
 <template>
-  <div class="card" :class="{ hide: spellCardSize === CardSize.Icon }">
+  <div class="card" :class="{ hide: size === CardSize.Icon }" @click="toggle">
     <div class="spell-title">
       <!--      <img class="spell-icon" :src="spellIcon" />-->
       <SpellIcon class="spell-icon" :type="id" />
-      <div class="spell-level-small" :class="{ hide: spellCardSize !== CardSize.Full }">
+      <div class="spell-level-small" :class="{ hide: size !== CardSize.Full }">
         {{ spell.lvl }}
       </div>
-      <div class="spell-name" :class="{ hide: spellCardSize === CardSize.Icon }">
+      <div class="spell-name" :class="{ hide: size === CardSize.Icon }">
         {{ spell.name }}
       </div>
     </div>
-    <div class="spell-level" :class="{ hide: spellCardSize !== CardSize.Full }">
+    <div class="spell-level" :class="{ hide: size !== CardSize.Full }">
       {{ `${spell.lvl ? 'Рівень ' : ''}${LvlMap[spell.lvl]} ${SchoolsMap[spell.school]}` }}
     </div>
 
-    <div class="spell-content" :class="{ hide: spellCardSize !== CardSize.Full }">
+    <div class="spell-content" :class="{ hide: size !== CardSize.Full }">
       <div class="info">
         <div class="cast-time">
           <div class="title">Час виконання</div>

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { Ref, ref } from 'vue';
 import { Spell } from '@/types/spells';
 import PocketDataBase from '@/api/PocketBase';
+import { useLocalStorage } from '@vueuse/core';
 
 export enum Route {
   MySpells,
@@ -13,7 +14,7 @@ const useAppStore = defineStore('app', () => {
 
   const route: Ref<Route> = ref(Route.MySpells);
   const menuIsOpen: Ref<boolean> = ref(false);
-  const selectedSpells: Ref<Array<Spell>> = ref([]);
+  const selectedSpells: Ref<Set<Spell>> = useLocalStorage('selectedSpells', new Set<Spell>());
 
   const setRoute = (r: Route) => {
     route.value = r;
@@ -25,11 +26,10 @@ const useAppStore = defineStore('app', () => {
     menuIsOpen.value = false;
   };
   const addSpell = (id: Spell) => {
-    selectedSpells.value.push(id);
+    selectedSpells.value.add(id);
   };
   const removeSpell = (id: Spell) => {
-    const index = selectedSpells.value.indexOf(id);
-    selectedSpells.value.splice(index, 1);
+    selectedSpells.value.delete(id);
   };
 
   return {

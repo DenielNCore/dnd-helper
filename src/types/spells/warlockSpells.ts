@@ -25,7 +25,7 @@ enum Lvl1 {
 }
 
 enum Lvl2 {
-  CloudOfDarkness = 'CloudOfDarkness',
+  CloudOfDaggers = 'CloudOfDaggers',
   CrownOfMadness = 'CrownOfMadness',
   Darkness = 'Darkness',
   Enthrall = 'Enthrall',

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+  import { ref, Ref } from 'vue';
   import useAppStore, { Route } from '@/stores/appStore';
   import LoginForm from '@/components/LoginForm.vue';
+  import { onClickOutside } from '@vueuse/core';
 
   withDefaults(
     defineProps<{
@@ -25,10 +27,13 @@
     appStore.setRoute(Route.Skills);
     appStore.closeMenu();
   };
+
+  const containerRef: Ref<HTMLDivElement> = ref() as Ref<HTMLDivElement>;
+  onClickOutside(containerRef, appStore.closeMenu);
 </script>
 
 <template>
-  <div class="menu" :class="{ 'is-open': isOpen }">
+  <div ref="containerRef" class="menu" :class="{ 'is-open': isOpen }">
     <div @click="openMySpells">Книга заклять</div>
     <div @click="openAllSpells">Всі закляття</div>
     <div @click="openSkills">Вміння</div>
@@ -38,10 +43,9 @@
 
 <style scoped lang="scss">
   .menu {
-    z-index: 2;
+    z-index: 5;
     width: 200px;
     height: 100%;
-    //background-color: red;
     position: fixed;
     right: -200px;
 
