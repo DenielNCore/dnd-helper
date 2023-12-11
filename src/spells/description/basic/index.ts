@@ -8,7 +8,7 @@ import Lvl6Spell from '@/spells/description/basic/lvl6';
 import Lvl7Spell from '@/spells/description/basic/lvl7';
 import Lvl8Spell from '@/spells/description/basic/lvl8';
 import Lvl9Spell from '@/spells/description/basic/lvl9';
-import { Spell } from '@/types/spells';
+import { Spell } from '@/spells/list/basic';
 import { ISpell } from '@/types/spell';
 
 const allSpells: Partial<Record<keyof typeof Spell, ISpell>> = {

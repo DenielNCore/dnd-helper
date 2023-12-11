@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Ref, ref } from 'vue';
-import { Spell } from '@/types/spells';
+import Spell from '@/spells/list';
 import PocketDataBase from '@/api/PocketBase';
 import { useLocalStorage } from '@vueuse/core';
 

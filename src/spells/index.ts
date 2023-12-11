@@ -1,6 +1,6 @@
-import allSpellsDescriptions from '@/spells/description';
-
-console.log(allSpellsDescriptions);
-
-export { allSpellsDescriptions as spells };
-export default { description: allSpellsDescriptions };
+// import allSpellsDescriptions from '@/spells/description';
+// import Spell from '@/spells/list';
+//
+//
+// export { allSpellsDescriptions as spells, Spell };
+// export default { description: allSpellsDescriptions, Spell: Spell.Spell };

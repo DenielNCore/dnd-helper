@@ -2,9 +2,9 @@ import { defineStore } from 'pinia';
 import { computed, ComputedRef, Ref, ref } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
 import { Lvl, Class, Action } from '@/types/spell';
-import { Spell } from '@/types/spells';
+import Spell from '@/spells/list';
+import spells from '@/spells/description';
 import { ClassSpells } from '@/SpellList';
-import { spells } from '@/spells';
 
 interface SpellFilterFnI {
   (list: Spell[]): Spell[];

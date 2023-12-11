@@ -3,7 +3,7 @@ import allBasicSpells, {
   Lvl1Spell as lvl1Basic,
   Lvl2Spell as lvl2Basic,
 } from '@/spells/description/basic';
-import { Spell } from '@/types/spells';
+import { Spell } from '@/spells/list';
 import { ISpell } from '@/types/spell';
 
 const allSpells: Partial<Record<keyof typeof Spell, ISpell>> = {

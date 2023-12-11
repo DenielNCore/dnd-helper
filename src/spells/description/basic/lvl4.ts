@@ -1,5 +1,5 @@
 import { Action, ISpell, Source, MagicSchool, DamageType } from '@/types/spell';
-import { Spell, Lvl4 } from '@/types/spells';
+import { Spell, Lvl4 } from '@/spells/list/basic';
 
 const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {};
 

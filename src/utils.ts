@@ -1,4 +1,4 @@
-import { Spell } from '@/types/spells';
+import type Spell from 'src/spells/list';
 import { ClassSpells } from '@/SpellList';
 import { ClassesMap } from '@/SpellMapping';
 
