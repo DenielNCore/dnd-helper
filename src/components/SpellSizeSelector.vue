@@ -56,7 +56,7 @@
 <style scoped lang="scss">
   .spell-card-size-container {
     z-index: 3;
-    //padding: 5px 10px;
+    pointer-events: none;
     position: fixed;
     width: 100%;
     height: 50px;
@@ -79,6 +79,7 @@
       }
 
       div {
+        pointer-events: auto;
         width: 20px;
         padding: 5px;
         text-align: center;
@@ -95,6 +96,7 @@
   .open-select {
     //width: 30px;
     cursor: pointer;
+    pointer-events: auto;
 
     background-color: #ddd;
     position: absolute;

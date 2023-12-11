@@ -29,7 +29,7 @@
   };
 
   const containerRef: Ref<HTMLDivElement> = ref() as Ref<HTMLDivElement>;
-  onClickOutside(containerRef, appStore.closeMenu);
+  // onClickOutside(containerRef, appStore.closeMenu);
 </script>
 
 <template>
@@ -43,6 +43,7 @@
 
 <style scoped lang="scss">
   .menu {
+    pointer-events: none;
     z-index: 5;
     width: 200px;
     height: 100%;
@@ -63,6 +64,8 @@
     }
 
     div {
+      pointer-events: auto;
+
       cursor: pointer;
       font-weight: 800;
       font-size: 24px;
