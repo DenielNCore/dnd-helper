@@ -15,7 +15,7 @@
   const appStore = useAppStore();
   const { selectedSpells } = toRefs(appStore);
 
-  if (!selectedSpells.value.length) {
+  if (!selectedSpells.value.size) {
     appStore.setRoute(Route.AllSpells);
 
     console.info('redirected to spell list');
@@ -23,7 +23,7 @@
   const removeSpell = (id: Spell) => {
     appStore.removeSpell(id);
 
-    if (!selectedSpells.value.length) {
+    if (!selectedSpells.value.size) {
       appStore.setRoute(Route.AllSpells);
 
       console.warn('redirected to spell list');
@@ -35,11 +35,7 @@
   <div v-for="id in selectedSpells" :key="id" class="card-container">
     <SpellCard :id="id" :spell-card-size="0" />
 
-    <div
-      v-if="appStore.selectedSpells.includes(id)"
-      class="remove-btn"
-      @click="() => removeSpell(id)"
-    >
+    <div v-if="appStore.selectedSpells.has(id)" class="remove-btn" @click="() => removeSpell(id)">
       Прибрати
     </div>
   </div>

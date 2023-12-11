@@ -76,11 +76,12 @@
     background-color: rgba(0, 0, 0, 0.04);
 
     .class-filtering {
-      width: 100%;
+      width: calc(100% - 76px);
       display: flex;
-      border: 1px dashed black;
+      //border: 1px dashed black;
+      //border-bottom: 1px dashed black;
 
-      margin-top: 50px;
+      //margin-top: 50px;
 
       .single-class-filter-list {
         width: 100%;
@@ -92,7 +93,7 @@
         min-width: 70px;
         height: 50px;
         display: flex;
-        padding: 10px;
+        padding: 5px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -112,7 +113,7 @@
 
         &.all-classes {
           min-width: 0;
-          border-right: 1px dashed black;
+          //border-right: 1px dashed black;
           padding-left: 0;
 
           .class-filtering-btn-icon {

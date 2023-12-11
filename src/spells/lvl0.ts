@@ -868,4 +868,6 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
 };
 
+// console.log('0 lvl spells: ', Object.keys(spells));
+
 export default spells;
