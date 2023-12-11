@@ -8,7 +8,7 @@
   import DiamondIcon from '@/assets/diamond.png';
   import { Action, ISpell } from '@/types/spell';
   import { Spell } from '@/types/spells';
-  import spells from '@/spells';
+  import { spells } from '@/spells';
   import { ActionMap, SchoolsMap, LvlMap } from '@/SpellMapping';
   import { convertDistanceToText, convertTimeToText, getClassList } from '@/utils';
   import { CardSize } from '@/types/spellCard';

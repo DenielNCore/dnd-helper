@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core';
 import { Lvl, Class, Action } from '@/types/spell';
 import { Spell } from '@/types/spells';
 import { ClassSpells } from '@/SpellList';
-import spells from '@/spells';
+import { spells } from '@/spells';
 
 interface SpellFilterFnI {
   (list: Spell[]): Spell[];
