@@ -9,7 +9,7 @@ import {
   AllSorcererSpells,
   AllWarlockSpells,
   AllWizardSpells,
-} from '@/spells/list/basic';
+} from '@/spells/list';
 
 const ClassSpells: { [key: string]: Array<Spell> } = {
   [Class.Artificer]: [],

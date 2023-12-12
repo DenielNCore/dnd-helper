@@ -1,44 +1,54 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
-
 import AllBasicSpells from '@/spells/list/basic';
+import AllElementalEvilSpells from '@/spells/list/elemental-evil';
 
 const Spell = {
   ...AllBasicSpells.Spell,
+  ...AllElementalEvilSpells.Spell,
 };
 
 const Lvl0 = {
   ...AllBasicSpells.Lvl0,
+  ...AllElementalEvilSpells.Lvl0,
 };
 
 const Lvl1 = {
   ...AllBasicSpells.Lvl1,
+  ...AllElementalEvilSpells.Lvl1,
 };
 
 const Lvl2 = {
   ...AllBasicSpells.Lvl2,
+  ...AllElementalEvilSpells.Lvl2,
 };
 
 const Lvl3 = {
   ...AllBasicSpells.Lvl3,
+  ...AllElementalEvilSpells.Lvl3,
 };
 
 const Lvl4 = {
   ...AllBasicSpells.Lvl4,
+  ...AllElementalEvilSpells.Lvl4,
 };
 
 const Lvl5 = {
   ...AllBasicSpells.Lvl5,
+  ...AllElementalEvilSpells.Lvl5,
 };
 
 const Lvl6 = {
   ...AllBasicSpells.Lvl6,
+  ...AllElementalEvilSpells.Lvl6,
 };
 
 const Lvl7 = {
   ...AllBasicSpells.Lvl7,
+  ...AllElementalEvilSpells.Lvl7,
 };
 const Lvl8 = {
   ...AllBasicSpells.Lvl8,
+  ...AllElementalEvilSpells.Lvl8,
 };
 const Lvl9 = {
   ...AllBasicSpells.Lvl9,
@@ -46,6 +56,7 @@ const Lvl9 = {
 
 const AllBardSpells = {
   ...AllBasicSpells.AllBardSpells,
+  ...AllElementalEvilSpells.AllBardSpells,
 };
 
 const AllClericSpells = {
@@ -53,21 +64,26 @@ const AllClericSpells = {
 };
 const AllDruidSpells = {
   ...AllBasicSpells.AllDruidSpells,
+  ...AllElementalEvilSpells.AllDruidSpells,
 };
 const AllPaladinSpells = {
   ...AllBasicSpells.AllPaladinSpells,
 };
 const AllRangerSpells = {
   ...AllBasicSpells.AllRangerSpells,
+  ...AllElementalEvilSpells.AllRangerSpells,
 };
 const AllSorcererSpells = {
   ...AllBasicSpells.AllSorcererSpells,
+  ...AllElementalEvilSpells.AllSorcererSpells,
 };
 const AllWarlockSpells = {
   ...AllBasicSpells.AllWarlockSpells,
+  ...AllElementalEvilSpells.AllWarlockSpells,
 };
 const AllWizardSpells = {
   ...AllBasicSpells.AllWizardSpells,
+  ...AllElementalEvilSpells.AllWizardSpells,
 };
 
 declare type Spell = keyof typeof Spell;

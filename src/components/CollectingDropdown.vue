@@ -106,7 +106,7 @@
 <style scoped lang="scss">
   .collecting-container {
     margin: 10px;
-    width: 200px;
+    width: 175px;
     position: relative;
     display: flex;
     flex-direction: column;

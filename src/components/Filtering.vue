@@ -1,16 +1,21 @@
 <script setup lang="ts">
   import { computed, ComputedRef, toRefs } from 'vue';
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
-  import { Class } from '@/types/spell';
+  import { Class, LvlType } from '@/types/spell';
   import { classList } from '@/SpellList';
-  import { ClassesMap, LvlMap, ActionMap } from '@/SpellMapping';
+  import { ClassesMap, LvlMap, ActionMap, SourceMap } from '@/SpellMapping';
   import CollectingDropdown from '@/components/CollectingDropdown.vue';
 
   const spellFilteringStore = useSpellFilteringStore();
 
-  const { toggleClass, clearClass, updateLvlFilter, updatedactionFilter } = spellFilteringStore;
-  const { selectedClasses, selectedLvls, selectedActions } = toRefs(spellFilteringStore);
+  const { toggleClass, clearClass, updateLvlFilter, updatedActionFilter, updatedSourceFilter } =
+    spellFilteringStore;
+  const { selectedClasses, selectedLvls, selectedActions, selectedSources } =
+    toRefs(spellFilteringStore);
 
+  const updateLvl = (lvlList: string[]) => {
+    updateLvlFilter(lvlList.map(lvl => +lvl) as LvlType[]);
+  };
   const classListFilters: ComputedRef<
     Array<{ name: string; selected: boolean; toggle: () => void }>
   > = computed(() => {
@@ -58,13 +63,19 @@
         :options-map="LvlMap"
         :selected-options="selectedLvls"
         title="Рівень закляття"
-        @update-selected="updateLvlFilter"
+        @update-selected="updateLvl"
       />
       <CollectingDropdown
         :options-map="ActionMap"
         :selected-options="selectedActions"
         title="Час виконання"
-        @update-selected="updatedactionFilter"
+        @update-selected="updatedActionFilter"
+      />
+      <CollectingDropdown
+        :options-map="SourceMap"
+        :selected-options="selectedSources"
+        title="Джерело"
+        @update-selected="updatedSourceFilter"
       />
     </div>
   </div>
@@ -125,6 +136,7 @@
 
     .main-filtering {
       display: flex;
+      flex-wrap: wrap;
     }
   }
 </style>
