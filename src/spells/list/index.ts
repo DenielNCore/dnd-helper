@@ -55,35 +55,35 @@ const Lvl9 = {
 };
 
 const AllBardSpells = {
-  ...AllBasicSpells.AllBardSpells,
-  ...AllElementalEvilSpells.AllBardSpells,
+  ...AllBasicSpells.AllBardSpells.AllSpells,
+  ...AllElementalEvilSpells.AllBardSpells.AllSpells,
 };
 
 const AllClericSpells = {
-  ...AllBasicSpells.AllClericSpells,
+  ...AllBasicSpells.AllClericSpells.AllSpells,
 };
 const AllDruidSpells = {
-  ...AllBasicSpells.AllDruidSpells,
-  ...AllElementalEvilSpells.AllDruidSpells,
+  ...AllBasicSpells.AllDruidSpells.AllSpells,
+  ...AllElementalEvilSpells.AllDruidSpells.AllSpells,
 };
 const AllPaladinSpells = {
-  ...AllBasicSpells.AllPaladinSpells,
+  ...AllBasicSpells.AllPaladinSpells.AllSpells,
 };
 const AllRangerSpells = {
-  ...AllBasicSpells.AllRangerSpells,
-  ...AllElementalEvilSpells.AllRangerSpells,
+  ...AllBasicSpells.AllRangerSpells.AllSpells,
+  ...AllElementalEvilSpells.AllRangerSpells.AllSpells,
 };
 const AllSorcererSpells = {
-  ...AllBasicSpells.AllSorcererSpells,
-  ...AllElementalEvilSpells.AllSorcererSpells,
+  ...AllBasicSpells.AllSorcererSpells.AllSpells,
+  ...AllElementalEvilSpells.AllSorcererSpells.AllSpells,
 };
 const AllWarlockSpells = {
-  ...AllBasicSpells.AllWarlockSpells,
-  ...AllElementalEvilSpells.AllWarlockSpells,
+  ...AllBasicSpells.AllWarlockSpells.AllSpells,
+  ...AllElementalEvilSpells.AllWarlockSpells.AllSpells,
 };
 const AllWizardSpells = {
-  ...AllBasicSpells.AllWizardSpells,
-  ...AllElementalEvilSpells.AllWizardSpells,
+  ...AllBasicSpells.AllWizardSpells.AllSpells,
+  ...AllElementalEvilSpells.AllWizardSpells.AllSpells,
 };
 
 declare type Spell = keyof typeof Spell;

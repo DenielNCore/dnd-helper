@@ -13,16 +13,13 @@
   const { selectedClasses, selectedLvls, selectedActions, selectedSources } =
     toRefs(spellFilteringStore);
 
-  const updateLvl = (lvlList: string[]) => {
-    updateLvlFilter(lvlList.map(lvl => +lvl) as LvlType[]);
-  };
   const classListFilters: ComputedRef<
     Array<{ name: string; selected: boolean; toggle: () => void }>
   > = computed(() => {
     return classList.map((cl: Class) => {
       return {
         name: ClassesMap[cl],
-        selected: selectedClasses.value.includes(cl),
+        selected: selectedClasses.value.has(cl),
         toggle: () => {
           toggleClass(cl);
         },
@@ -30,7 +27,7 @@
     });
   });
 
-  const allClassesIsSelected = computed(() => !selectedClasses.value.length);
+  const allClassesIsSelected = computed(() => !selectedClasses.value.size);
 </script>
 
 <template>
@@ -63,7 +60,7 @@
         :options-map="LvlMap"
         :selected-options="selectedLvls"
         title="Рівень закляття"
-        @update-selected="updateLvl"
+        @update-selected="updateLvlFilter"
       />
       <CollectingDropdown
         :options-map="ActionMap"

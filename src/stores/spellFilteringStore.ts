@@ -12,10 +12,16 @@ interface SpellFilterFnI {
 
 const useSpellFilteringStore = defineStore('spellFiltering', () => {
   // useLocalStorage for storing all filtering in local storage
-  const selectedClasses: Ref<Array<Class>> = useLocalStorage('selectedCLass', []);
-  const selectedLvls: Ref<Array<LvlType>> = useLocalStorage('selectedLvl', []);
-  const selectedActions: Ref<Array<keyof typeof Action>> = useLocalStorage('selectedAction', []);
-  const selectedSources: Ref<Array<keyof typeof Source>> = useLocalStorage('selectedSources', []);
+  const selectedClasses: Ref<Set<Class>> = useLocalStorage('selectedCLass', new Set<Class>());
+  const selectedLvls: Ref<Set<LvlType>> = useLocalStorage('selectedLvl', new Set<LvlType>());
+  const selectedActions: Ref<Set<keyof typeof Action>> = useLocalStorage(
+    'selectedAction',
+    new Set<keyof typeof Action>(),
+  );
+  const selectedSources: Ref<Set<keyof typeof Source>> = useLocalStorage(
+    'selectedSources',
+    new Set<keyof typeof Source>(),
+  );
 
   const allSpellNames: ComputedRef<Array<Spell>> = computed(
     () =>
@@ -23,36 +29,36 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
   );
 
   const classFilteredSpellList: ComputedRef<Array<Spell>> = computed(() => {
-    if (!selectedClasses.value.length) return allSpellNames.value;
+    if (!selectedClasses.value.size) return allSpellNames.value;
 
     return allSpellNames.value.filter((sp: Spell) => {
-      return selectedClasses.value.some((selClass: Class) => {
+      return Array.from(selectedClasses.value).some((selClass: Class) => {
         return ClassSpells[selClass].includes(sp);
       });
     });
   });
 
   const lvlFilter: SpellFilterFnI = list => {
-    if (!selectedLvls.value.length) return list;
+    if (!selectedLvls.value.size) return list;
 
     return list.filter((sp: Spell) => {
-      return selectedLvls.value.includes(spells[sp]!.lvl);
+      return selectedLvls.value.has(spells[sp]!.lvl);
     });
   };
 
   const actionFilter = (list: Spell[]) => {
-    if (!selectedActions.value.length) return list;
+    if (!selectedActions.value.size) return list;
 
     return list.filter((sp: Spell) => {
-      return selectedActions.value.includes(spells[sp]!.actionType);
+      return selectedActions.value.has(spells[sp]!.actionType);
     });
   };
 
   const sourceFilter = (list: Spell[]) => {
-    if (!selectedSources.value.length) return list;
+    if (!selectedSources.value.size) return list;
 
     return list.filter((sp: Spell) => {
-      return selectedSources.value.includes(spells[sp]!.source);
+      return selectedSources.value.has(spells[sp]!.source);
     });
   };
 
@@ -65,40 +71,37 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
   });
 
   const toggleClass = (name: Class) => {
-    const index = selectedClasses.value.indexOf(name);
-
-    if (index >= 0) {
-      selectedClasses.value.splice(index, 1);
+    if (selectedClasses.value.has(name)) {
+      selectedClasses.value.delete(name);
     } else {
-      selectedClasses.value.push(name);
+      selectedClasses.value.add(name);
     }
   };
 
   const clearClass = () => {
-    selectedClasses.value.length = 0;
+    selectedClasses.value.clear();
   };
 
   const updateLvlFilter = (list: Array<LvlType>) => {
-    selectedLvls.value.length = 0;
+    selectedLvls.value.clear();
 
     list.forEach((lvl: LvlType) => {
-      selectedLvls.value.push(lvl);
+      selectedLvls.value.add(lvl);
     });
   };
 
   const updatedActionFilter = (list: Array<Action>) => {
-    selectedActions.value.length = 0;
+    selectedActions.value.clear();
 
     list.forEach((act: Action) => {
-      selectedActions.value.push(act);
+      selectedActions.value.add(act);
     });
   };
 
   const updatedSourceFilter = (list: Array<Source>) => {
-    selectedSources.value.length = 0;
-
+    selectedSources.value.clear();
     list.forEach((source: Source) => {
-      selectedSources.value.push(source);
+      selectedSources.value.add(source);
     });
   };
 

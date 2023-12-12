@@ -11,7 +11,7 @@
   const props = withDefaults(
     defineProps<{
       optionsMap: IOptionMap;
-      selectedOptions: Array<OptionT>;
+      selectedOptions: Set<OptionT>;
       title?: string;
     }>(),
     {
@@ -29,23 +29,14 @@
   const dropDownTop = computed(() => `${height.value}px`);
 
   const showSelect: Ref<boolean> = ref(false);
-  const selectedOptions: Ref<Array<OptionT>> = ref([...props.selectedOptions]);
+
+  const selectedOptions: Ref<Set<OptionT>> = ref(new Set(props.selectedOptions));
 
   const options: ComputedRef<Array<OptionT>> = computed(() => {
     return Object.keys(props.optionsMap).filter(
-      (opt: OptionT) => !selectedOptions.value.includes(opt),
+      (opt: OptionT) => !selectedOptions.value.has(String(opt)),
     );
   });
-
-  watch(
-    () => selectedOptions.value,
-    (opts: Array<OptionT>) =>
-      emit(
-        'updateSelected',
-        opts.map((opt: OptionT) => opt),
-      ),
-    { deep: true },
-  );
 
   const click = (e, dontSelect: boolean = false) => {
     inputRef.value.focus();
@@ -53,9 +44,14 @@
     if (!dontSelect) showSelect.value = !showSelect.value;
   };
 
-  const select = (e, option: OptionT) => {
-    selectedOptions.value.push(option);
+  const updateSelected = () => {
+    emit('updateSelected', [...selectedOptions.value]);
+  };
 
+  const select = (e, option: OptionT) => {
+    selectedOptions.value.add(option);
+
+    updateSelected();
     click(e, true);
   };
 
@@ -64,8 +60,8 @@
   };
 
   const removeSelected = (option: OptionT) => {
-    const index = selectedOptions.value.indexOf(option);
-    selectedOptions.value.splice(index, 1);
+    selectedOptions.value.delete(option);
+    updateSelected();
   };
 
   onClickOutside(containerRef, close);

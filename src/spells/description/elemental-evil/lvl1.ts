@@ -1,11 +1,11 @@
-import { Action, ISpell, Source, MagicSchool, DamageType } from '@/types/spell';
+import { Action, ISpell, Source, MagicSchool, DamageType, Lvl } from '@/types/spell';
 import Stats from '@/types/stats';
 import { Spell, Lvl1 } from '@/spells/list/elemental-evil';
 
 const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   [Spell.AbsorbElements]: {
     name: 'ПОГЛИНАННЯ ЕЛЕМЕНТІВ',
-    lvl: 1,
+    lvl: Lvl.One,
     school: MagicSchool.Abjuration, // втілення
     actionType: Action.Reaction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -53,7 +53,7 @@ the beast gains advantage on attack rolls against any creature within 5 feet of 
 
   [Spell.BeastBond]: {
     name: 'ЗВ’ЯЗОК З ТВАРИНОЮ',
-    lvl: 1,
+    lvl: Lvl.One,
     school: MagicSchool.Divination, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -93,7 +93,7 @@ At Higher Levels. When you cast this spell using a spell slot of 2nd level or hi
 
   [Spell.Catapult]: {
     name: 'КАТАПУЛЬТА',
-    lvl: 1,
+    lvl: Lvl.One,
     school: MagicSchool.Transmutation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -137,7 +137,7 @@ At Higher Levels. When you cast this spell using a spell slot of 2nd level or hi
 
   [Spell.EarthTremor]: {
     name: 'ЗЕМЛЕТРУС',
-    lvl: 1,
+    lvl: Lvl.One,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -182,7 +182,7 @@ At Higher Levels. When you cast this spell using a spell slot of 2nd level or hi
 
   [Spell.IceKnife]: {
     name: 'ЛЬОДЯНИЙ НІЖ',
-    lvl: 1,
+    lvl: Lvl.One,
     school: MagicSchool.Conjuration, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд

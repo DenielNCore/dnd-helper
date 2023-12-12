@@ -35,19 +35,29 @@ export enum MagicSchool {
 }
 
 export enum Lvl {
-  Zero = 0,
-  One = 1,
-  Two = 2,
-  Three = 3,
-  Four = 4,
-  Five = 5,
-  Six = 6,
-  Seven = 7,
-  Eight = 8,
-  Nine = 9,
+  Zero = '0',
+  One = '1',
+  Two = '2',
+  Three = '3',
+  Four = '4',
+  Five = '5',
+  Six = '6',
+  Seven = '7',
+  Eight = '8',
+  Nine = '9',
 }
 
-export type LvlType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type LvlType =
+  | Lvl.Zero
+  | Lvl.One
+  | Lvl.Two
+  | Lvl.Three
+  | Lvl.Four
+  | Lvl.Five
+  | Lvl.Six
+  | Lvl.Seven
+  | Lvl.Eight
+  | Lvl.Nine;
 
 export enum Class {
   Artificer = 'Artificer',
@@ -68,7 +78,7 @@ export enum Source {
 
 export interface ISpell {
   name: string;
-  lvl: Lvl;
+  lvl: LvlType;
 
   school: MagicSchool;
   actionType: Action;

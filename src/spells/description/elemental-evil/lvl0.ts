@@ -1,4 +1,4 @@
-import { Action, ISpell, Source, MagicSchool, DamageType } from '@/types/spell';
+import { Action, ISpell, Source, MagicSchool, DamageType, Lvl } from '@/types/spell';
 import Stats from '@/types/stats';
 import { Spell, Lvl0 } from '@/spells/list/elemental-evil';
 
@@ -19,7 +19,7 @@ If you cast this spell multiple times, you can have up to three of its non-insta
 
   [Spell.ControlFlames]: {
     name: 'КОНТРОЛЬ НАД ВОГНЕМ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -65,7 +65,7 @@ The spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level
 
   [Spell.CreateBonfire]: {
     name: 'СТВОРЕННЯ БАГАТТЯ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Conjuration, // виклик
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -108,7 +108,7 @@ The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level
 
   [Spell.Frostbite]: {
     name: 'ОБМОРОЖЕННЯ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -153,7 +153,7 @@ You seize the air and compel it to create one of the following effects at a poin
 
   [Spell.Gust]: {
     name: 'ПОРИВ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -198,7 +198,7 @@ If you cast this spell again, the spell ends early on any pebbles still affected
 
   [Spell.MagicStone]: {
     name: 'МАГІЧНИЙ КАМІНЬ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // втілення
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -244,7 +244,7 @@ If you cast this spell multiple times, you can have no more than two of its non-
 
   [Spell.MoldEarth]: {
     name: 'ФОРМУВАННЯ ЗЕМЛІ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -295,7 +295,7 @@ If you cast this spell multiple times, you can have no more than two of its non-
 
   [Spell.ShapeWater]: {
     name: 'ФОРМУВАННЯ ВОДИ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -342,7 +342,7 @@ The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level
 
   [Spell.Thunderclap]: {
     name: 'ГРОМОВИЙ ХЛОПОК',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
