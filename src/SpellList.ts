@@ -1,5 +1,5 @@
 import { Action, Class, ISpell } from '@/types/spell';
-import type { Spell } from '@/types/spells';
+import type Spell from '@/spells/list';
 import {
   AllBardSpells,
   AllClericSpells,
@@ -9,7 +9,7 @@ import {
   AllSorcererSpells,
   AllWarlockSpells,
   AllWizardSpells,
-} from '@/types/spells';
+} from '@/spells/list';
 
 const ClassSpells: { [key: string]: Array<Spell> } = {
   [Class.Artificer]: [],

@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { computed, ComputedRef, Ref, ref } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
-import { Lvl, Class, Action } from '@/types/spell';
-import { Spell } from '@/types/spells';
+import { LvlType, Class, Action, Source } from '@/types/spell';
+import Spell from '@/spells/list';
+import spells from '@/spells/description';
 import { ClassSpells } from '@/SpellList';
-import spells from '@/spells';
 
 interface SpellFilterFnI {
   (list: Spell[]): Spell[];
@@ -13,8 +13,9 @@ interface SpellFilterFnI {
 const useSpellFilteringStore = defineStore('spellFiltering', () => {
   // useLocalStorage for storing all filtering in local storage
   const selectedClasses: Ref<Array<Class>> = useLocalStorage('selectedCLass', []);
-  const selectedLvls: Ref<Array<number>> = useLocalStorage('selectedLvl', []);
-  const selectedActions: Ref<Array<string>> = useLocalStorage('selectedAction', []);
+  const selectedLvls: Ref<Array<LvlType>> = useLocalStorage('selectedLvl', []);
+  const selectedActions: Ref<Array<keyof typeof Action>> = useLocalStorage('selectedAction', []);
+  const selectedSources: Ref<Array<keyof typeof Source>> = useLocalStorage('selectedSources', []);
 
   const allSpellNames: ComputedRef<Array<Spell>> = computed(
     () =>
@@ -47,10 +48,18 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     });
   };
 
+  const sourceFilter = (list: Spell[]) => {
+    if (!selectedSources.value.length) return list;
+
+    return list.filter((sp: Spell) => {
+      return selectedSources.value.includes(spells[sp]!.source);
+    });
+  };
+
   const filteredSpellList: ComputedRef<Array<Spell>> = computed(() => {
     const list = [...classFilteredSpellList.value];
 
-    const filterFnList: Array<SpellFilterFnI> = [lvlFilter, actionFilter];
+    const filterFnList: Array<SpellFilterFnI> = [lvlFilter, actionFilter, sourceFilter];
 
     return filterFnList.reduce((acc: Spell[], fn: SpellFilterFnI) => fn(acc), list);
   });
@@ -63,33 +72,34 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     } else {
       selectedClasses.value.push(name);
     }
-
-    useLocalStorage('selectedCLass', selectedClasses.value);
   };
 
   const clearClass = () => {
     selectedClasses.value.length = 0;
-    useLocalStorage('selectedCLass', selectedClasses.value);
   };
 
-  const updateLvlFilter = (list: Array<Lvl>) => {
+  const updateLvlFilter = (list: Array<LvlType>) => {
     selectedLvls.value.length = 0;
 
-    list.forEach((lvl: Lvl) => {
-      selectedLvls.value.push(+lvl);
+    list.forEach((lvl: LvlType) => {
+      selectedLvls.value.push(lvl);
     });
-
-    useLocalStorage('selectedLvl', list);
   };
 
-  const updatedactionFilter = (list: Array<Action>) => {
+  const updatedActionFilter = (list: Array<Action>) => {
     selectedActions.value.length = 0;
 
     list.forEach((act: Action) => {
       selectedActions.value.push(act);
     });
+  };
 
-    useLocalStorage('selectedAction', list);
+  const updatedSourceFilter = (list: Array<Source>) => {
+    selectedSources.value.length = 0;
+
+    list.forEach((source: Source) => {
+      selectedSources.value.push(source);
+    });
   };
 
   return {
@@ -97,11 +107,13 @@ const useSpellFilteringStore = defineStore('spellFiltering', () => {
     filteredSpellList,
     selectedLvls,
     selectedActions,
+    selectedSources,
 
     toggleClass,
     clearClass,
     updateLvlFilter,
-    updatedactionFilter,
+    updatedActionFilter,
+    updatedSourceFilter,
   };
 });
 

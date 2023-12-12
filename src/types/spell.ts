@@ -1,3 +1,5 @@
+import Stats from '@/types/stats';
+
 export enum DamageType {
   Acid = 'Acid',
   Bludgeoning = 'Bludgeoning',
@@ -45,6 +47,8 @@ export enum Lvl {
   Nine = 9,
 }
 
+export type LvlType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 export enum Class {
   Artificer = 'Artificer',
   Bard = 'Bard',
@@ -64,7 +68,7 @@ export enum Source {
 
 export interface ISpell {
   name: string;
-  lvl: number;
+  lvl: Lvl;
 
   school: MagicSchool;
   actionType: Action;
@@ -77,7 +81,7 @@ export interface ISpell {
   target?: string;
   numberOfTargets: number;
 
-  description: string;
+  description: string | string[];
   components: {
     c?: boolean;
     t?: boolean;
@@ -94,7 +98,7 @@ export interface ISpell {
   freeWay: boolean;
   self?: boolean;
   area?: string;
-  saveThough?: string;
+  saveThough?: Stats | string;
   attack?: string;
   ritual: boolean;
 

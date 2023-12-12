@@ -8,7 +8,7 @@ enum Lvl0 {
   Message = 'Message',
   MinorIllusion = 'MinorIllusion',
   Prestidigitation = 'Prestidigitation',
-  Thunderclap = 'Thunderclap', // ElementalEvilPlayersCompanion
+  // Thunderclap = 'Thunderclap', // ElementalEvilPlayersCompanion
   TrueStrike = 'TrueStrike',
   ViciousMockery = 'ViciousMockery',
 }

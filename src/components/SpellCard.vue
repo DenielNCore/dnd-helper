@@ -4,11 +4,12 @@
   import RitualIcon from '@/assets/ritual.png';
   import ActionIcon from '@/assets/action.png';
   import BonusActionIcon from '@/assets/bonus-action.png';
+  import ReactionIcon from '@/assets/reaction.png';
   import DurationIcon from '@/assets/duration.png';
   import DiamondIcon from '@/assets/diamond.png';
   import { Action, ISpell } from '@/types/spell';
-  import { Spell } from '@/types/spells';
-  import spells from '@/spells';
+  import spells from '@/spells/description';
+  import Spell from '@/spells/list';
   import { ActionMap, SchoolsMap, LvlMap } from '@/SpellMapping';
   import { convertDistanceToText, convertTimeToText, getClassList } from '@/utils';
   import { CardSize } from '@/types/spellCard';
@@ -32,6 +33,8 @@
         return BonusActionIcon;
       case Action.LongTerm:
         return DurationIcon;
+      case Action.Reaction:
+        return ReactionIcon;
 
       default:
         return '';
@@ -44,6 +47,8 @@
         return ActionMap[Action.Action];
       case Action.BonusAction:
         return ActionMap[Action.BonusAction];
+      case Action.Reaction:
+        return ActionMap[Action.Reaction];
 
       default:
         return '';
@@ -53,7 +58,14 @@
   const duration = computed(() =>
     convertTimeToText(spell.value.duration, spell.value.canEndEarlier),
   );
-  const comps = computed(() => Object.keys(spell.value.components).join(', ').toUpperCase());
+  const comps = computed(() =>
+    Object.keys(spell.value.components)
+      .filter(comp => spell.value.components[comp])
+      .join(', ')
+      .toUpperCase(),
+  );
+
+  const titleFontSize = computed(() => (spell.value.name.length > 22 ? '14px' : '18px'));
 </script>
 
 <template>
@@ -100,7 +112,17 @@
         </div>
       </div>
       <div class="description-block">
-        <div class="description">{{ spell.description }}</div>
+        <div v-if="spell.reactionCondition" class="reaction-info">
+          <img :src="ReactionIcon" />
+          <span>{{ spell.reactionCondition }}</span>
+        </div>
+
+        <div v-if="Array.isArray(spell.description)">
+          <div v-for="description in spell.description" :key="description" class="description">
+            {{ description }}
+          </div>
+        </div>
+        <div v-else class="description">{{ spell.description }}</div>
         <div v-if="spell.components.m" class="material-component">
           <img :src="DiamondIcon" />
           <span><strong>Матеріальна складова: </strong>{{ spell.components.m }}</span>
@@ -127,6 +149,7 @@
     overflow: hidden;
     transition: width 1s;
 
+    cursor: pointer;
     &.hide {
       width: 26px;
       transition: width 1s;
@@ -159,7 +182,7 @@
   }
 
   .spell-title {
-    font-size: 18px;
+    font-size: v-bind(titleFontSize);
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -237,7 +260,13 @@
     height: 340px;
 
     position: relative;
-    .material-component {
+
+    .description {
+      margin-bottom: 4px;
+    }
+
+    .material-component,
+    .reaction-info {
       display: flex;
       align-items: center;
       font-size: 12px;
@@ -250,6 +279,7 @@
 
       img {
         padding-right: 4px;
+        width: 24px;
       }
 
       span {
@@ -257,6 +287,10 @@
           font-weight: 800;
         }
       }
+    }
+
+    .reaction-info {
+      margin: 0 0 10px 0;
     }
   }
 
@@ -268,6 +302,10 @@
     font-size: 10px;
     display: flex;
     align-items: center;
+
+    img {
+      width: 25px;
+    }
   }
 
   .class-list {

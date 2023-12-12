@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { Spell } from '@/types/spells';
+  import Spell from '@/spells/list';
   import FireBall from '@/assets/fire-ball.png';
 
   const props = defineProps<{

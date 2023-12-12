@@ -1,5 +1,5 @@
 import { Action, ISpell, Source, MagicSchool } from '@/types/spell';
-import { Spell } from '@/types/spells';
+import { Spell } from '@/spells/list/basic';
 
 // const spells: Partial<Record<keyof typeof Spell, ISpell>> = {
 const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
@@ -2233,6 +2233,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
     canEndEarlier: false,
     freeWay: true,
     ritual: false,
+    reactionCondition: 'коли по тобі попадає атака або ти стаєш ціллю магічного пострілу',
     damageType: [],
     source: Source.BasicRules,
     components: {

@@ -29,6 +29,7 @@ module.exports = {
     "@typescript-eslint/no-non-null-assertion": "off",
     'no-unused-vars': "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "import/no-named-as-default": 0,
     'vue/multi-word-component-names': 'off'
   },
   'settings': {

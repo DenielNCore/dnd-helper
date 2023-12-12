@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
-import AllBardSpells, { BardSpells } from '@/types/spells/bardSpells';
-import AllClericSpells, { ClericSpells } from '@/types/spells/clericSpells';
-import AllDruidSpells, { DruidSpells } from '@/types/spells/druidSpells';
-import AllPaladinSpells, { PaladinSpells } from '@/types/spells/paladinSpells';
-import AllRangerSpells, { RangerSpells } from '@/types/spells/rangerSpells';
-import AllSorcererSpells, { SorcererSpells } from '@/types/spells/sorcererSpells';
-import AllWarlockSpells, { WarlockSpells } from '@/types/spells/warlockSpells';
-import AllWizardSpells, { WizardSpells } from '@/types/spells/wizardSpells';
+import AllBardSpells, { BardSpells } from '@/spells/list/basic/bardSpells';
+import AllClericSpells, { ClericSpells } from '@/spells/list/basic/clericSpells';
+import AllDruidSpells, { DruidSpells } from '@/spells/list/basic/druidSpells';
+import AllPaladinSpells, { PaladinSpells } from '@/spells/list/basic/paladinSpells';
+import AllRangerSpells, { RangerSpells } from '@/spells/list/basic/rangerSpells';
+import AllSorcererSpells, { SorcererSpells } from '@/spells/list/basic/sorcererSpells';
+import AllWarlockSpells, { WarlockSpells } from '@/spells/list/basic/warlockSpells';
+import AllWizardSpells, { WizardSpells } from '@/spells/list/basic/wizardSpells';
 
 const Lvl0 = {
   ...AllBardSpells.Lvl0,
@@ -132,15 +132,6 @@ const Spell = {
 
 declare type AllSpells = typeof AllSpells;
 declare type Spell = keyof typeof Spell;
-// export type Spell =
-//   | BardSpells
-//   | ClericSpells
-//   | DruidSpells
-//   | PaladinSpells
-//   | RangerSpells
-//   | SorcererSpells
-//   | WarlockSpells
-//   | WizardSpells;
 
 declare type Lvl0 = typeof Lvl0;
 declare type Lvl1 = typeof Lvl1;
@@ -195,4 +186,5 @@ export default {
   Lvl7,
   Lvl8,
   Lvl9,
+  Spell,
 };
