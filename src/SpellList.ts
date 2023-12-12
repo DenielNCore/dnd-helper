@@ -13,14 +13,14 @@ import {
 
 const ClassSpells: { [key: string]: Array<Spell> } = {
   [Class.Artificer]: [],
-  [Class.Bard]: [...(Object.keys(AllBardSpells.AllSpells) as Spell[])],
-  [Class.Cleric]: [...(Object.keys(AllClericSpells.AllSpells) as Spell[])],
-  [Class.Druid]: [...(Object.keys(AllDruidSpells.AllSpells) as Spell[])],
-  [Class.Paladin]: [...(Object.keys(AllPaladinSpells.AllSpells) as Spell[])],
-  [Class.Ranger]: [...(Object.keys(AllRangerSpells.AllSpells) as Spell[])],
-  [Class.Sorcerer]: [...(Object.keys(AllSorcererSpells.AllSpells) as Spell[])],
-  [Class.Warlock]: [...(Object.keys(AllWarlockSpells.AllSpells) as Spell[])],
-  [Class.Wizard]: [...(Object.keys(AllWizardSpells.AllSpells) as Spell[])],
+  [Class.Bard]: [...(Object.keys(AllBardSpells) as Spell[])],
+  [Class.Cleric]: [...(Object.keys(AllClericSpells) as Spell[])],
+  [Class.Druid]: [...(Object.keys(AllDruidSpells) as Spell[])],
+  [Class.Paladin]: [...(Object.keys(AllPaladinSpells) as Spell[])],
+  [Class.Ranger]: [...(Object.keys(AllRangerSpells) as Spell[])],
+  [Class.Sorcerer]: [...(Object.keys(AllSorcererSpells) as Spell[])],
+  [Class.Warlock]: [...(Object.keys(AllWarlockSpells) as Spell[])],
+  [Class.Wizard]: [...(Object.keys(AllWizardSpells) as Spell[])],
 };
 
 const classList = [

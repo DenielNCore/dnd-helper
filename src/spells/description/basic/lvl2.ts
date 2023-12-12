@@ -1,4 +1,4 @@
-import { Action, ISpell, Source, MagicSchool, DamageType } from '@/types/spell';
+import { Action, ISpell, Source, MagicSchool, DamageType, Lvl } from '@/types/spell';
 import { Spell } from '@/spells/list/basic';
 
 const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
@@ -13,7 +13,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.SeeInvisibility]: {
     name: 'БАЧЕННЯ НЕВИДИМОГО',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -56,7 +56,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.PassWithoutTrace]: {
     name: 'БЕЗСЛІДНЕ ПЕРЕСУВАННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -100,7 +100,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.DetectThoughts]: {
     name: 'ВИЯВЛЕННЯ НАМІРІВ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -140,7 +140,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.MirrorImage]: {
     name: 'ВІДДЗЕРКАЛЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -179,7 +179,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   * */
   [Spell.Knock]: {
     name: 'ВІДКРИВАННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -218,7 +218,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   * */
   [Spell.ContinualFlame]: {
     name: 'ВІЧНИЙ ВОГОНЬ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -262,7 +262,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.FlamingSphere]: {
     name: 'ВОГНЯНА СФЕРА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Conjuration, // виклик
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -305,7 +305,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
  * */
   [Spell.FlameBlade]: {
     name: 'ВОГНЯНИЙ КЛИНОК',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -351,7 +351,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Suggestion]: {
     name: 'ВСИЛЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -393,7 +393,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.CalmEmotions]: {
     name: 'ВТИХОМИРЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -433,7 +433,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Barkskin]: {
     name: 'ДУБОВА ШКІРА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -474,7 +474,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.SpiritualWeapon]: {
     name: 'ДУХОВНА ЗБРОЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -514,7 +514,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.ProtectionFromPoison]: {
     name: 'ЗАХИСТ ВІД ОТРУТИ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -555,7 +555,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.EnlargeReduce]: {
     name: 'ЗБІЛЬШЕННЯ/ЗМЕНШЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -595,7 +595,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.BeastSense]: {
     name: 'ЗВІРИНЕ ЧУТТЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -635,7 +635,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Shatter]: {
     name: 'ЗВУКОВИЙ УДАР',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -681,7 +681,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.AlterSelf]: {
     name: 'ЗМІНА ВИГЛЯДУ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -723,7 +723,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.CrownOfMadness]: {
     name: 'КОРОНА ШАЛЕНСТВА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -767,7 +767,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Levitate]: {
     name: 'ЛЕВІТАЦІЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -807,7 +807,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.MagicWeapon]: {
     name: 'МАГІЧНА ЗБРОЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -851,7 +851,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.ArcaneLock]: {
     name: 'МАГІЧНИЙ ЗАМОК',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -895,7 +895,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.MagicMouth]: {
     name: 'МАГІЧНІ ВУСТА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 60, // 1 вчинок === 0 секунд
@@ -932,7 +932,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.LesserRestoration]: {
     name: 'МАЛЕ ВІДНОВЛЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -972,7 +972,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.MelFAcidsArrow]: {
     name: 'МЕЛЬФОВА КИСЛОТНА СТРІЛА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1018,7 +1018,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Moonbeam]: {
     name: 'МІСЯЧНИЙ ПРОМІНЬ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1059,7 +1059,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.PrayerOfHealing]: {
     name: 'МОЛИТВА ЗЦІЛЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.LongTerm,
     castTime: 600, // 1 вчинок === 0 секунд
@@ -1100,7 +1100,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 */
   [Spell.Invisibility]: {
     name: 'НЕВИДИМІСТЬ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1146,7 +1146,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.GentleRepose]: {
     name: 'НЕТЛІННІ ОСТАНКИ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Necromancy, // некромантія
     actionType: Action.LongTerm,
     castTime: 60, // 1 вчинок === 0 секунд
@@ -1187,7 +1187,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.NystulsMagicAura]: {
     name: 'НІСТУЛОВА МАГІЧНА АУРА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1224,7 +1224,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 */
   [Spell.ZoneOfTruth]: {
     name: 'ОБЛАСТЬ ІСТИНИ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1265,7 +1265,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.WardingBond]: {
     name: 'ОХОРОННИЙ ЗВ’ЯЗОК',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1309,7 +1309,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   * */
   [Spell.Web]: {
     name: 'ПАВУТИНА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Conjuration, // виклик
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1348,7 +1348,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
     * */
   [Spell.SpiderClimb]: {
     name: 'ПАВУЧЕ ЛАЗІННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1387,7 +1387,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.ScorchingRay]: {
     name: 'ПАЛЮЧІ ПРОМЕНІ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1435,7 +1435,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Augury]: {
     name: 'ПЕРЕДВІСТЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.LongTerm,
     castTime: 60, // 1 вчинок === 0 секунд
@@ -1476,7 +1476,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 */
   [Spell.Aid]: {
     name: 'ПІДМОГА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1520,7 +1520,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Darkness]: {
     name: 'ПІТЬМА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1566,7 +1566,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.EnhanceAbility]: {
     name: 'ПОКРАЩЕННЯ ХАРАКТЕРИСТИКИ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1608,7 +1608,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.GustOfWind]: {
     name: 'ПОРИВ ВІТРУ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1649,7 +1649,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.AnimalMessenger]: {
     name: 'ПОШТОВА ТВАРИНА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1687,7 +1687,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.FindTraps]: {
     name: 'ПОШУК ПАСТОК',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1727,7 +1727,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.LocateObject]: {
     name: 'ПОШУК ПРЕДМЕТА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1767,7 +1767,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.FindSteed]: {
     name: 'ПОШУК СКАКУНА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Conjuration, // виклик
     actionType: Action.LongTerm,
     castTime: 600, // 1 вчинок === 0 секунд
@@ -1806,7 +1806,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.LocateAnimalsOrPlants]: {
     name: 'ПОШУК ТВАРИН АБО РОСЛИН',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1849,7 +1849,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.PhantasmalForce]: {
     name: 'ПРИМАРА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1891,7 +1891,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 */
   [Spell.RayOfEnfeeblement]: {
     name: 'ПРОМІНЬ СЛАБКОСТІ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Necromancy, // некромантія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1935,7 +1935,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.SpikeGrowth]: {
     name: 'РІСТ ШИПІВ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -1977,7 +1977,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 */
   [Spell.Blur]: {
     name: 'РОЗМИТА ФОРМА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2017,7 +2017,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 На вищих рівнях: Якщо ти виконуєш це заклинання, витрачаючи магічний слот 3 рівня або вищого, його ушко- дження збільшуються на 1к8 за кожен рівень слота вище другого. */
   [Spell.HeatMetal]: {
     name: 'РОЗПЕЧЕНИЙ МЕТАЛ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2062,7 +2062,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.BlindnessDeafness]: {
     name: 'СЛІПОТА/ГЛУХОТА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Necromancy, // некромантія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2107,7 +2107,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 *  */
   [Spell.CordonOfArrows]: {
     name: 'СТІНА ЗІ СТРІЛ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2149,7 +2149,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.BrandingSmite]: {
     name: 'ТАВРУВАЛЬНА КАРА',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2192,7 +2192,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 * */
   [Spell.Darkvision]: {
     name: 'ТЕМНИЙ ЗІР',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2234,7 +2234,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Silence]: {
     name: 'ТИША',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2275,7 +2275,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.RopeTrick]: {
     name: 'ТРЮК З МОТУЗКОЮ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2316,7 +2316,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.MistyStep]: {
     name: 'ТУМАННИЙ КРОК',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Conjuration, // виклик
     actionType: Action.BonusAction,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2358,7 +2358,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.HoldPerson]: {
     name: 'УТРИМАННЯ ОСОБИ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2405,7 +2405,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.CloudOfDaggers]: {
     name: 'ХМАРА КИНДЖАЛІВ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Conjuration, // виклик
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд
@@ -2448,7 +2448,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Enthrall]: {
     name: 'ЧАРІВНЕ МОВЛЕННЯ',
-    lvl: 2,
+    lvl: Lvl.Two,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок === 0 секунд

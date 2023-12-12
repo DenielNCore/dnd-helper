@@ -1,10 +1,10 @@
-import { Action, ISpell, Source, MagicSchool } from '@/types/spell';
+import { Action, ISpell, Source, MagicSchool, Lvl } from '@/types/spell';
 import { Spell } from '@/spells/list/basic';
 
 const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   [Spell.BladeWard]: {
     name: 'ЗАХИСТ ВІД ЗБРОЇ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0,
@@ -37,7 +37,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.DancingLights]: {
     name: 'ТАНЦЮЮЧІ ВОГНИКИ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0,
@@ -72,7 +72,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Friends]: {
     name: 'ПРИЯЗНЬ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 0 вчинок
@@ -104,7 +104,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Light]: {
     name: 'СВІТЛО',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -136,7 +136,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.MageHand]: {
     name: 'МАГІЧНА РУКА',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Conjuration, // викликання
     actionType: Action.Action,
     castTime: 0,
@@ -167,7 +167,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Mending]: {
     name: 'РЕМОНТ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.LongTerm,
     castTime: 60, // 1 хвилина
@@ -198,7 +198,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.Message]: {
     name: 'ПОВІДОМЛЕННЯ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -229,7 +229,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.MinorIllusion]: {
     name: 'НЕЗНАЧНА ІЛЮЗІЯ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Illusion, // ілюзія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -260,7 +260,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.Prestidigitation]: {
     name: 'ФІГЛЯРСТВО',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -298,7 +298,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.TrueStrike]: {
     name: 'ІСТИННИЙ УДАР',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -329,7 +329,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.ViciousMockery]: {
     name: 'ЗЛИЙ НАСМІХ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Enchantment, // причарування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -360,7 +360,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Guidance]: {
     name: 'ПОРАДА',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Divination, // віщування
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -391,7 +391,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.Resistance]: {
     name: 'ОПІР',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Abjuration, // огородження
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -423,7 +423,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.SacredFlame]: {
     name: 'СВЯТЕ ПОЛУМ’Я',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -456,7 +456,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.SpareTheDying]: {
     name: 'ДОГЛЯД ЗА ПОРАНЕНИМ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Necromancy, // некромантія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -486,7 +486,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.Thaumaturgy]: {
     name: 'ЧУДОТВОРСТВО',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -516,7 +516,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.Druidcraft]: {
     name: 'РЕМЕСЛО ДРУЇДІВ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -546,7 +546,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.PoisonSpray]: {
     name: 'ОТРУЙНІ БРИЗКИ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Conjuration, // викликання
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -578,7 +578,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.ProduceFlame]: {
     name: 'СТВОРЕННЯ ВОГНЮ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Conjuration, // викликання
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -610,7 +610,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.Shillelagh]: {
     name: 'ДУБИНКА',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.BonusAction,
     castTime: 0, // 1 бонусний вчинок
@@ -642,7 +642,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.ThornWhip]: {
     name: 'ТЕРНОВИЙ БАТІГ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Transmutation, // видозміна
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -675,7 +675,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.AcidSplash]: {
     name: 'КИСЛОТНІ БРИЗКИ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Conjuration, // викликання
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -707,7 +707,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.ChillTouch]: {
     name: 'КРИЖАНИЙ ДОТИК',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Necromancy, // некромантія
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -739,7 +739,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.FireBolt]: {
     name: 'ВОГНЯНИЙ ЗАРЯД',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -771,7 +771,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.RayOfFrost]: {
     name: 'МОРОЗНИЙ ПРОМІНЬ',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -803,7 +803,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
   },
   [Spell.ShockingGrasp]: {
     name: 'ЕЛЕКТРОШОК',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
@@ -836,7 +836,7 @@ const spells: { -readonly [key in keyof typeof Spell]?: ISpell } = {
 
   [Spell.EldritchBlast]: {
     name: 'МІСТИЧНИЙ ЗАРЯД',
-    lvl: 0,
+    lvl: Lvl.Zero,
     school: MagicSchool.Evocation, // втілення
     actionType: Action.Action,
     castTime: 0, // 1 вчинок
