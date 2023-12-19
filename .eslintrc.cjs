@@ -2,9 +2,9 @@
 require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
-  'root': true,
-  'parser': 'vue-eslint-parser',
-  'extends': [
+  root: true,
+  parser: 'vue-eslint-parser',
+  extends: [
     'airbnb-base',
     'airbnb-typescript/base',
     'eslint:recommended',
@@ -12,32 +12,50 @@ module.exports = {
     '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier',
   ],
-  'parserOptions': {
-    'project': ['./tsconfig.json'],
+  parserOptions: {
+    project: ['./tsconfig.json'],
   },
-  'ignorePatterns': ['vite.config.ts', ],
-  'rules': {
+  ignorePatterns: ['vite.config.ts'],
+  rules: {
     'class-methods-use-this': 1,
-    'no-underscore-dangle': ['error', { 'allowAfterThis': true }],
+    'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'no-continue': 0,
     'no-fallthrough': 0,
-    'no-param-reassign': [1, { 'props': false }],
-    'no-console': ['error', { 'allow': ['warn', 'error', 'info', 'table', 'time', 'timeStamp', 'timeEnd', 'timeLog', 'clear', 'group', 'groupCollapsed', 'groupEnd' ] }],
+    'no-param-reassign': [1, { props: false }],
+    'no-console': [
+      'error',
+      {
+        allow: [
+          'warn',
+          'error',
+          'info',
+          'table',
+          'time',
+          'timeStamp',
+          'timeEnd',
+          'timeLog',
+          'clear',
+          'group',
+          'groupCollapsed',
+          'groupEnd',
+        ],
+      },
+    ],
     'no-restricted-syntax': 1,
-    "@typescript-eslint/no-explicit-any": "off",
-    "unused-imports/no-unused-imports": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    'no-unused-vars': "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "import/no-named-as-default": 0,
-    'vue/multi-word-component-names': 'off'
+    '@typescript-eslint/no-explicit-any': 'off',
+    'unused-imports/no-unused-imports': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'import/no-named-as-default': 0,
+    'vue/multi-word-component-names': 'off',
   },
-  'settings': {
+  settings: {
     'import/resolver': {
-      'typescript': {},
+      typescript: {},
     },
   },
-  'env': {
+  env: {
     'vue/setup-compiler-macros': true,
   },
 };

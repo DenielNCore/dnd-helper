@@ -21,6 +21,7 @@ const ClassesMap = {
   [Class.Warlock]: 'Чаклун',
   [Class.Wizard]: 'Чарівник',
 };
+
 const LvlMap = {
   [Lvl.Zero]: 'Замовляння',
   [Lvl.One]: '1-ий',
