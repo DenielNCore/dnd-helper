@@ -39,11 +39,7 @@
 </script>
 
 <template>
-  <img class="class-filtering-btn-icon" :src="classIcon" />
+  <img :src="classIcon" />
 </template>
 
-<style scoped lang="scss">
-  .class-filtering-btn-icon {
-    width: 60%;
-  }
-</style>
+<style scoped lang="scss"></style>

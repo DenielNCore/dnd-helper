@@ -49,7 +49,7 @@
           :class="{ selected: cl.selected }"
           @click="cl.toggle"
         >
-          <FilteringIcons :type="cl.iconType" />
+          <FilteringIcons class="class-filtering-btn-icon" :type="cl.iconType" />
           {{ cl.name }}
         </div>
       </div>
@@ -114,19 +114,19 @@
         }
 
         .class-filtering-btn-icon {
-          //width: 60%;
+          width: 60%;
           height: 100%;
           //background-color: green;
           border-radius: 50%;
         }
 
         &.all-classes {
-          min-width: 0;
+          min-width: 5%;
           //border-right: 1px dashed black;
           padding-left: 0;
 
           .class-filtering-btn-icon {
-            border-radius: 0 50% 50% 0;
+            border-radius: 50%;
           }
         }
       }
