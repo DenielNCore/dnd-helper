@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import Avatar from '@/components/Avatar.vue';
+  import { Health, selection } from '@/types/avatarTypes';
   // withDefaults(
   //   defineProps<{
   //     isOpen: boolean;
@@ -10,7 +12,18 @@
 </script>
 
 <template>
-  <div>skills</div>
+  <Avatar :health="Health.full" :selection="selection.none" title="5" />
+  <!-- <Avatar :health="Health.damaged" selection="current" />
+  <Avatar :health="Health.nearlydead" selection="current" />
+  <Avatar :health="Health.dead" selection="current" />
+  <Avatar :health="Health.full" selection="none" />
+  <Avatar :health="Health.damaged" selection="none" />
+  <Avatar :health="Health.nearlydead" selection="none" />
+  <Avatar :health="Health.dead" selection="none" />
+  <Avatar :health="Health.full" selection="selected" />
+  <Avatar :health="Health.damaged" selection="selected" />
+  <Avatar :health="Health.nearlydead" selection="selected" />
+  <Avatar :health="Health.dead" selection="selected" /> -->
 </template>
 
 <style scoped lang="scss">
@@ -31,3 +44,4 @@
   //  }
   //}
 </style>
+@/types/avatarTypes
