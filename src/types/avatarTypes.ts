@@ -1,11 +1,11 @@
-export enum Health {
+export enum AvatarHealth {
   full = 'full',
   damaged = 'damaged',
   nearlydead = 'nearlydead',
   dead = 'dead',
 }
 
-export enum selection {
+export enum Selection {
   current = 'current',
   selected = 'selected',
   none = 'none',

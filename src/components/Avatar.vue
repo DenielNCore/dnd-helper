@@ -1,29 +1,49 @@
 <script setup lang="ts">
   import Avatar from '@/assets/astarion.png';
-  import { Health, selection } from '@/types/avatarTypes';
+  import { AvatarHealth, Selection } from '@/types/avatarTypes';
   import Skull from '@/assets/skull.png';
+  import { computed } from 'vue';
+  import { controlledComputed } from '@vueuse/core';
 
   const props = defineProps<{
-    health: Health;
-    selection: selection;
+    health: AvatarHealth;
+    selection: Selection;
     title: string;
   }>();
+
+  const containerClass = computed(() => ({
+    unselected: props.selection === Selection.none,
+  }));
+
+  const avatarClass = computed(() => {
+    return {
+      current: props.selection === Selection.current,
+      selected: props.selection === Selection.selected,
+    };
+  });
+
+  const healthGradientClass = computed(() => {
+    return {
+      'half-gradient': props.health === AvatarHealth.damaged,
+      'full-gradient':
+        props.health === AvatarHealth.nearlydead || props.health === AvatarHealth.dead,
+    };
+  });
+
+  const skullClass = computed(() => {
+    return { skull: props.health === AvatarHealth.dead };
+  });
 </script>
 
 <template>
-  <div class="avatar-container" :class="{ unselected: props.selection === 'none' }">
-    <img :src="Avatar" v-if="props.selection === selection.current" class="current" />
-    <img :src="Avatar" v-if="props.selection === selection.selected" class="selected" />
-    <img v-if="props.selection === selection.none" :src="Avatar" />
+  <div class="avatar-container" :class="containerClass">
+    <img :src="Avatar" :class="avatarClass" />
 
-    <div v-if="props.health === Health.damaged" class="half-gradient"></div>
+    <div :class="healthGradientClass"></div>
 
-    <div
-      v-if="props.health === Health.nearlydead || props.health === Health.dead"
-      class="full-gradient"
-    ></div>
+    <div :class="healthGradientClass"></div>
 
-    <img v-if="props.health === Health.dead" :src="Skull" class="skull" />
+    <img :src="Skull" :class="skullClass" />
 
     <div class="title">{{ props.title }}</div>
   </div>
