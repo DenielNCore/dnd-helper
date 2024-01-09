@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import Avatar from '@/components/Avatar.vue';
+  import { AvatarHealth, Selection } from '@/types/avatarTypes';
   // withDefaults(
   //   defineProps<{
   //     isOpen: boolean;
@@ -9,9 +11,7 @@
   // );
 </script>
 
-<template>
-  <div>skills</div>
-</template>
+<template></template>
 
 <style scoped lang="scss">
   //.menu {
@@ -31,3 +31,4 @@
   //  }
   //}
 </style>
+@/types/avatarTypes
