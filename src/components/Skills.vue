@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import Avatar from '@/components/Avatar.vue';
-  import { AvatarHealth, Selection } from '@/types/avatarTypes';
   // withDefaults(
   //   defineProps<{
   //     isOpen: boolean;
@@ -31,4 +29,3 @@
   //  }
   //}
 </style>
-@/types/avatarTypes

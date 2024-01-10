@@ -21,6 +21,7 @@
 </template>
 
 <style scoped lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
   .menu-btn {
     position: fixed;
     right: 20px;

@@ -3,7 +3,6 @@
   import { AvatarHealth, Selection } from '@/types/avatarTypes';
   import Skull from '@/assets/skull.png';
   import { computed } from 'vue';
-  import { controlledComputed } from '@vueuse/core';
 
   const props = defineProps<{
     health: AvatarHealth;
@@ -43,15 +42,13 @@
 
     <div :class="healthGradientClass"></div>
 
-    <img :src="Skull" :class="skullClass" />
+    <img v-if="props.health === AvatarHealth.dead" :src="Skull" :class="skullClass" />
 
     <div class="title">{{ props.title }}</div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
   .current {
     outline: 2px solid #ffeb3b;
   }
