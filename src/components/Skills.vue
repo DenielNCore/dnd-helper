@@ -9,9 +9,7 @@
   // );
 </script>
 
-<template>
-  <div>skills</div>
-</template>
+<template></template>
 
 <style scoped lang="scss">
   //.menu {
