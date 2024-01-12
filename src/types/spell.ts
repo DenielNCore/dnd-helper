@@ -1,4 +1,4 @@
-import { Character, Class } from '@/types/character';
+import { Stats, Class } from '@/types/character';
 
 export enum DamageType {
   Acid = 'Acid',
@@ -108,7 +108,7 @@ export interface ISpell {
   freeWay: boolean;
   self?: boolean;
   area?: string;
-  saveThough?: Character | string;
+  saveThough?: Stats | string;
   attack?: string;
   ritual: boolean;
 

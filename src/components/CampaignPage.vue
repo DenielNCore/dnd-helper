@@ -48,6 +48,7 @@
   const lockMaxExp = (e: Event) => {
     if (!e.target) return;
 
+    // @ts-ignore
     e.target.value = Math.min(e.target.value, Experience.Twenty);
   };
 </script>
