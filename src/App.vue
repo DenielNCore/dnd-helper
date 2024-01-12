@@ -4,6 +4,8 @@
   import Skills from '@/components/Skills.vue';
   import AllSpells from '@/components/AllSpells.vue';
   import MySpells from '@/components/MySpells.vue';
+  import BattlePage from '@/components/BattlePage.vue';
+  import CampaignPage from '@/components/CampaignPage.vue';
   import useAppStore, { Route } from '@/stores/appStore';
   import 'reset-css';
   import '@/style.css';
@@ -18,6 +20,8 @@
   <MySpells v-if="appStore.route === Route.MySpells" />
   <AllSpells v-if="appStore.route === Route.AllSpells" />
   <Skills v-if="appStore.route === Route.Skills" />
+  <BattlePage v-if="appStore.route === Route.Battle" />
+  <CampaignPage v-if="appStore.route === Route.Campaign" />
 </template>
 
 <style scoped lang="scss">

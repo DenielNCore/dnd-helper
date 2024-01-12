@@ -109,6 +109,7 @@
 
     .collecting-title {
       font-size: 14px;
+      margin-bottom: 2px;
     }
 
     .all-collected-container {

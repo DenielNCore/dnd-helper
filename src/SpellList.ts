@@ -1,4 +1,5 @@
-import { Action, Class, ISpell } from '@/types/spell';
+import { Action, ISpell } from '@/types/spell';
+import { Class } from '@/types/character';
 import type Spell from '@/spells/list';
 import {
   AllBardSpells,

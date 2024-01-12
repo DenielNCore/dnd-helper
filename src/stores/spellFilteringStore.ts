@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia';
 import { computed, ComputedRef, Ref, ref } from 'vue';
 import { useLocalStorage } from '@vueuse/core';
-import { LvlType, Class, Action, Source } from '@/types/spell';
+import { LvlType, Action, Source } from '@/types/spell';
+import { Class } from '@/types/character';
+
 import Spell from '@/spells/list';
 import spells from '@/spells/description';
 import { ClassSpells } from '@/SpellList';
