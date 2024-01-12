@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { Class } from '@/types/spell';
+  import { Class } from '@/types/character';
   import BardIcon from '@/assets/filterIcons/Bard.png';
   import ClericIcon from '@/assets/filterIcons/Cleric.png';
   import DruidIcon from '@/assets/filterIcons/Druid.png';
