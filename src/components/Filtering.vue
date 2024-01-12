@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { computed, ComputedRef, toRefs } from 'vue';
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
-  import { LvlType } from '@/types/spell';
   import { Class } from '@/types/character';
   import { classList } from '@/SpellList';
   import { ClassesMap, LvlMap, ActionMap, SourceMap } from '@/SpellMapping';
   import CollectingDropdown from '@/components/CollectingDropdown.vue';
+  import FilteringIcons from './FilteringIcons.vue';
 
   const spellFilteringStore = useSpellFilteringStore();
 
@@ -15,20 +15,19 @@
     toRefs(spellFilteringStore);
 
   const classListFilters: ComputedRef<
-    Array<{ name: string; selected: boolean; toggle: () => void }>
+    Array<{ name: string; selected: boolean; iconType: Class; toggle: () => void }>
   > = computed(() => {
     return classList.map((cl: Class) => {
       return {
         name: ClassesMap[cl],
         selected: selectedClasses.value.has(cl),
+        iconType: cl,
         toggle: () => {
           toggleClass(cl);
         },
       };
     });
   });
-
-  const allClassesIsSelected = computed(() => !selectedClasses.value.size);
 </script>
 
 <template>
@@ -36,7 +35,7 @@
     <div class="class-filtering">
       <div
         class="class-filtering-btn all-classes"
-        :class="{ selected: allClassesIsSelected }"
+        :class="{ selected: !selectedClasses.size }"
         @click="clearClass"
       >
         <div class="class-filtering-btn-icon"></div>
@@ -50,7 +49,7 @@
           :class="{ selected: cl.selected }"
           @click="cl.toggle"
         >
-          <div class="class-filtering-btn-icon"></div>
+          <FilteringIcons class="class-filtering-btn-icon" :type="cl.iconType" />
           {{ cl.name }}
         </div>
       </div>
@@ -96,6 +95,7 @@
         width: 100%;
         display: flex;
         overflow: scroll;
+        justify-content: space-evenly;
       }
 
       .class-filtering-btn {
@@ -114,19 +114,19 @@
         }
 
         .class-filtering-btn-icon {
-          width: 30px;
-          height: 30px;
-          background-color: green;
+          width: 60%;
+          height: 100%;
+          //background-color: green;
           border-radius: 50%;
         }
 
         &.all-classes {
-          min-width: 0;
+          min-width: 5%;
           //border-right: 1px dashed black;
           padding-left: 0;
 
           .class-filtering-btn-icon {
-            border-radius: 0 50% 50% 0;
+            border-radius: 50%;
           }
         }
       }
