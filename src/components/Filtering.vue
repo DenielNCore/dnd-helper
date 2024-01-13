@@ -95,7 +95,7 @@
         width: 100%;
         display: flex;
         overflow: scroll;
-        justify-content: space-evenly;
+        justify-content: space-between;
       }
 
       .class-filtering-btn {
