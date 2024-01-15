@@ -1,4 +1,4 @@
-import Stats from '@/types/stats';
+import { Stats, Class } from '@/types/character';
 
 export enum DamageType {
   Acid = 'Acid',
@@ -59,17 +59,17 @@ export type LvlType =
   | Lvl.Eight
   | Lvl.Nine;
 
-export enum Class {
-  Artificer = 'Artificer',
-  Bard = 'Bard',
-  Cleric = 'Cleric',
-  Druid = 'Druid',
-  Paladin = 'Paladin',
-  Ranger = 'Ranger',
-  Sorcerer = 'Sorcerer',
-  Warlock = 'Warlock',
-  Wizard = 'Wizard',
-}
+// export enum Class {
+//   Artificer = 'Artificer',
+//   Bard = 'Bard',
+//   Cleric = 'Cleric',
+//   Druid = 'Druid',
+//   Paladin = 'Paladin',
+//   Ranger = 'Ranger',
+//   Sorcerer = 'Sorcerer',
+//   Warlock = 'Warlock',
+//   Wizard = 'Wizard',
+// }
 
 export enum Source {
   BasicRules = 'BasicRules',
@@ -117,4 +117,4 @@ export interface ISpell {
   source: Source;
 }
 
-export default { Action, Class, Lvl, MagicSchool, Source };
+export default { Action, Lvl, MagicSchool, Source };

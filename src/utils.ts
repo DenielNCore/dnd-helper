@@ -1,6 +1,8 @@
 import type Spell from 'src/spells/list';
 import { ClassSpells } from '@/SpellList';
 import { ClassesMap } from '@/SpellMapping';
+import { Experience, Lvl } from '@/types/character';
+import LvlMap from '@/CharacterMapping';
 
 type StringIndexType = 0 | 1 | 2;
 const getStringIndex = (amount: number, before: boolean): StringIndexType => {
@@ -108,5 +110,19 @@ const getClassList = (spellId: Spell) => {
   return classList;
 };
 
-export default { convertTimeToText, convertDistanceToText, getClassList };
-export { convertTimeToText, convertDistanceToText, getClassList };
+const getLvlStringWithLvlUp = (lvl: number, exp: number) => {
+  return Object.keys(Lvl).reduce((acc: string, key: string) => {
+    if (Experience[key] <= exp) return key;
+    return acc;
+  }, '');
+};
+
+const getLvlUpString = (lvl: number, exp: number) => {
+  const key = getLvlStringWithLvlUp(lvl, exp);
+
+  if (lvl < LvlMap[key]) return `${lvl} -->> ${LvlMap[key]}`;
+  return lvl;
+};
+
+export default { convertTimeToText, convertDistanceToText, getClassList, getLvlUpString };
+export { convertTimeToText, convertDistanceToText, getClassList, getLvlUpString };

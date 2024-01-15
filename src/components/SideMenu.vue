@@ -27,6 +27,14 @@
     appStore.setRoute(Route.Skills);
     appStore.closeMenu();
   };
+  const openBattle = () => {
+    appStore.setRoute(Route.Battle);
+    appStore.closeMenu();
+  };
+  const openCampaigns = () => {
+    appStore.setRoute(Route.Campaign);
+    appStore.closeMenu();
+  };
 
   const containerRef: Ref<HTMLDivElement> = ref() as Ref<HTMLDivElement>;
   // onClickOutside(containerRef, appStore.closeMenu);
@@ -36,6 +44,8 @@
   <div ref="containerRef" class="menu" :class="{ 'is-open': isOpen }">
     <div @click="openMySpells">Книга заклять</div>
     <div @click="openAllSpells">Всі закляття</div>
+    <div @click="openBattle">Бій</div>
+    <div @click="openCampaigns">Мої компанії</div>
     <div @click="openSkills">Вміння</div>
     <LoginForm />
   </div>

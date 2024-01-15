@@ -34,6 +34,7 @@
 <style scoped lang="scss">
   .login-container,
   .logout-container {
+    pointer-events: auto;
     background-color: #ccc;
     display: flex;
     flex-direction: column;

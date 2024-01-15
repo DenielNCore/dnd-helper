@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed, ComputedRef, toRefs } from 'vue';
   import useSpellFilteringStore from '@/stores/spellFilteringStore';
-  import { Class } from '@/types/spell';
+  import { Class } from '@/types/character';
   import { classList } from '@/SpellList';
   import { ClassesMap, LvlMap, ActionMap, SourceMap } from '@/SpellMapping';
   import CollectingDropdown from '@/components/CollectingDropdown.vue';
@@ -95,7 +95,7 @@
         width: 100%;
         display: flex;
         overflow: scroll;
-        justify-content: space-evenly;
+        justify-content: space-between;
       }
 
       .class-filtering-btn {

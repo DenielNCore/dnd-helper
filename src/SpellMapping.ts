@@ -1,4 +1,5 @@
-import { MagicSchool, Lvl, Class, Action, Source } from '@/types/spell';
+import { MagicSchool, Lvl, Action, Source } from '@/types/spell';
+import { Class } from '@/types/character';
 
 const SchoolsMap = {
   [MagicSchool.Abjuration]: 'Огородження',
@@ -11,12 +12,17 @@ const SchoolsMap = {
   [MagicSchool.Transmutation]: 'Видозміна',
 };
 const ClassesMap = {
+  // TODO: move to character mapping
   [Class.Artificer]: 'Артефактор',
   [Class.Bard]: 'Бард',
+  [Class.Barbarian]: 'Варвар',
   [Class.Cleric]: 'Жрець',
   [Class.Druid]: 'Друід',
+  [Class.Fighter]: 'Боєць',
+  [Class.Monk]: 'Монах',
   [Class.Paladin]: 'Паладін',
   [Class.Ranger]: 'Слідопит',
+  [Class.Rogue]: 'Спритник',
   [Class.Sorcerer]: 'Чародій',
   [Class.Warlock]: 'Чаклун',
   [Class.Wizard]: 'Чарівник',

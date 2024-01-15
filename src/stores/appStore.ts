@@ -8,11 +8,13 @@ export enum Route {
   MySpells,
   AllSpells,
   Skills,
+  Battle,
+  Campaign,
 }
 const useAppStore = defineStore('app', () => {
   const db = new PocketDataBase();
 
-  const route: Ref<Route> = ref(Route.MySpells);
+  const route: Ref<Route> = useLocalStorage('route', Route.MySpells);
   const menuIsOpen: Ref<boolean> = ref(false);
   const selectedSpells: Ref<Set<Spell>> = useLocalStorage('selectedSpells', new Set<Spell>());
 
@@ -31,6 +33,10 @@ const useAppStore = defineStore('app', () => {
   const removeSpell = (id: Spell) => {
     selectedSpells.value.delete(id);
   };
+
+  // db.subscribeToCollection('users', (data: any) => {
+  //   console.log(data);
+  // });
 
   return {
     db,
