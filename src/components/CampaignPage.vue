@@ -1,7 +1,8 @@
 <script setup lang="ts">
-  import { computed, Ref, ref, watch } from 'vue';
-  import useCampaignsStore from '@/stores/campaignsStore';
+  import { computed, ComputedRef, Ref, ref, watch } from 'vue';
+  import useCampaignsStore, { CampaignI } from '@/stores/campaignsStore';
   import CollectingDropdown from '@/components/CollectingDropdown.vue';
+  import LoadingAnimation from '@/components/LoadingAnimation.vue';
   import { Class, Experience } from '@/types/character';
   import { useLocalStorage } from '@vueuse/core';
   import useCharactersStore, { CharacterI } from '@/stores/charactersStore';
@@ -11,10 +12,18 @@
   const campaignsStore = useCampaignsStore();
   const charactersStore = useCharactersStore();
 
-  const selectedCampaign = ref(0);
+  const selectedCampaignIndex = 0;
+
+  const isLoading = ref(false);
+  // TODO: move loading to store and animation at root or forground layer
+
+  const selectedCampaign = computed(() => {
+    return campaignsStore.campaigns[selectedCampaignIndex];
+  });
 
   const selectedCampaignCharacters = computed(() => {
-    return campaignsStore.campaigns[selectedCampaign.value]?.characters;
+    // console.log(campaignsStore.campaigns[selectedCampaignIndex]);
+    return selectedCampaign.value?.characters || [];
   });
 
   const characterNamesMap = computed(() => {
@@ -25,6 +34,8 @@
       }, {}) || {}
     );
   });
+
+  const comment = ref('');
 
   // console.log(characterNamesMap.value);
 
@@ -40,8 +51,15 @@
   };
 
   const increase = () => {
-    [...selectedCharacters.value].forEach((charId: string) => {
-      charactersStore.increase(charId, addingAmount.value);
+    isLoading.value = true;
+    const promises = campaignsStore.addExperience(selectedCampaign.value.id, {
+      ids: [...selectedCharacters.value],
+      value: addingAmount.value,
+      comment: comment.value,
+    });
+
+    Promise.all(promises).then(e => {
+      isLoading.value = false;
     });
   };
 
@@ -51,13 +69,20 @@
     // @ts-ignore
     e.target.value = Math.min(e.target.value, Experience.Twenty);
   };
+
+  const factIsOpen = ref(false);
+  const toggleFact = () => {
+    factIsOpen.value = !factIsOpen.value;
+  };
 </script>
 
 <template>
   <div class="campaigns-page">
+    <LoadingAnimation v-if="isLoading" />
     <!--    {{ campaignsStore.campaigns }}-->
     <div v-for="campaign in campaignsStore.campaigns" :key="campaign.id">
       <div class="campaign-name">{{ campaign.name }}</div>
+      <!--      <CampaignCharacter v-for="character in campaign.characters" :character="character.value" />-->
       <div v-for="character in campaign.characters" :key="character.value.id">
         <div class="character-name">{{ character.value.name }}</div>
         <div class="character-info">
@@ -66,6 +91,34 @@
             {{ `Рівень: ${getLvlUpString(character.value.lvl, character.value.experience)}` }}
           </div>
           <div class="character-class">{{ `Клас: ${ClassesMap[character.value.class]}` }}</div>
+        </div>
+      </div>
+
+      <div class="fact-container">
+        <div class="fact-title-container">
+          <div>Літопис</div>
+
+          <div class="btn fact-toggle-btn" @click="toggleFact" v-if="factIsOpen">-</div>
+          <div class="btn fact-toggle-btn" @click="toggleFact" v-else>+</div>
+        </div>
+        <div
+          :class="{
+            hide: !factIsOpen,
+          }"
+          class="fact"
+          v-for="fact in campaign.history"
+        >
+          <div class="fact-char-name-container">
+            <div
+              class="fact-char-name"
+              v-for="ch in fact.ids.map(pid => characterNamesMap[pid])"
+              :key="ch"
+            >
+              {{ ch }}
+            </div>
+          </div>
+          <div>Кількість досвіду: {{ fact.value }}</div>
+          <div v-if="fact.comment">За {{ fact.comment }}</div>
         </div>
       </div>
     </div>
@@ -80,26 +133,92 @@
         @update-selected="updateSelectedCharacters"
       />
 
+      <div class="comment-container">
+        <div>Коментар до отриманого досвіду</div>
+        <input v-model="comment" />
+      </div>
+
       <div class="amount-container">
         <div class="amount-title">Кількість</div>
         <input
           v-model="addingAmount"
           class="amount-input"
           type="number"
-          min="0"
+          :min="-Experience.Twenty"
           :max="Experience.Twenty"
           @input="lockMaxExp"
         />
 
-        <div class="amount-btn" @click="increase">Додати</div>
+        <div class="amount-btn btn" @click="increase">Додати</div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+  .btn {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 1px solid black;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .hide {
+    display: none;
+  }
   .campaigns-page {
     padding: 24px;
+
+    .fact-container {
+      margin-left: 16px;
+
+      .fact-title-container {
+        display: flex;
+        margin-bottom: 8px;
+        align-items: baseline;
+        justify-content: flex-start;
+
+        .fact-toggle-btn {
+          width: 20px;
+          height: 20px;
+          margin-bottom: 8px;
+          margin-left: 8px;
+        }
+      }
+
+      .fact {
+        background: linear-gradient(90deg, #dcdcdc, rgba(150, 150, 150, 0));
+        padding: 8px;
+
+        margin-bottom: 16px;
+
+        .fact-char-name-container {
+          display: flex;
+
+          .fact-char-name {
+            margin-right: 4px;
+            background: #a0a0a0;
+            width: fit-content;
+            padding: 2px;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
 
     .campaign-name {
       width: 262px;
@@ -111,7 +230,6 @@
       background: linear-gradient(90deg, #dcdcdc, rgba(150, 150, 150, 0));
       margin-bottom: 16px;
       display: flex;
-      //justify-content: center;
       padding-left: 8px;
       font-size: 20px;
       align-items: center;
@@ -165,6 +283,10 @@
       background: linear-gradient(90deg, #dcdcdc, rgba(150, 150, 150, 0));
     }
 
+    .comment-container {
+      margin-top: 24px;
+      margin-left: 8px;
+    }
     .amount-container {
       margin-top: 24px;
       margin-left: 8px;
@@ -182,22 +304,6 @@
       .amount-btn {
         width: 64px;
         height: 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 2px;
-        border: 1px solid black;
-
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-
-        &:active {
-          transform: translateY(1px);
-        }
       }
     }
   }
