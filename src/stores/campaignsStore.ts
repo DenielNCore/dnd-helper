@@ -17,6 +17,7 @@ interface CampaignExperienceI {
   ids: string[];
   value: number;
   comment: string;
+  date: Date;
 }
 
 export interface CampaignI {
@@ -131,7 +132,7 @@ const useCampaignsStore = defineStore('campaigns', () => {
       if (p) promises.push(p);
     });
 
-    const history = [...campaign.history, { ids, value, comment }];
+    const history = [...campaign.history, { ids, value, comment, date: new Date() }];
 
     const campaignPromise = appStore.db.setCampaignHistory(campaignId, history);
 

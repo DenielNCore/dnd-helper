@@ -6,6 +6,7 @@ type CampaignHistoryT = Array<{
   ids: string[];
   value: number;
   comment: string;
+  date: Date;
 }>;
 class PocketDataBase {
   readonly client: PocketBase = new PocketBase(DBUrl);
