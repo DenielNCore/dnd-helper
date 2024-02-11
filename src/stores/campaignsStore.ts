@@ -120,7 +120,7 @@ const useCampaignsStore = defineStore('campaigns', () => {
   const addExperience = (campaignId: string, exp: CampaignExperienceI): Promise<any>[] => {
     const promises: Promise<any>[] = [];
 
-    const { ids, value, comment } = exp;
+    const { ids, value, comment, date } = exp;
 
     if (!ids.length || !value) return promises;
 
@@ -132,7 +132,7 @@ const useCampaignsStore = defineStore('campaigns', () => {
       if (p) promises.push(p);
     });
 
-    const history = [...campaign.history, { ids, value, comment, date: new Date() }];
+    const history = [...campaign.history, { ids, value, comment, date }];
 
     const campaignPromise = appStore.db.setCampaignHistory(campaignId, history);
 

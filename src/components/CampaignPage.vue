@@ -56,6 +56,7 @@
       ids: [...selectedCharacters.value],
       value: addingAmount.value,
       comment: comment.value,
+      date: new Date(),
     });
 
     Promise.all(promises).then(e => {
