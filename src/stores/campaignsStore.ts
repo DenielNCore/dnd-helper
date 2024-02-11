@@ -13,8 +13,15 @@ import useCharactersStore, { CharacterI } from '@/stores/charactersStore';
 //   class: Class;
 // }
 
-interface CampaignI {
+interface CampaignExperienceI {
+  ids: string[];
+  value: number;
+  comment: string;
+}
+
+export interface CampaignI {
   name: string;
+  history: Array<CampaignExperienceI>;
   id: string;
   characters: Ref<Array<Ref<CharacterI>>>;
 }
@@ -36,10 +43,10 @@ const useCampaignsStore = defineStore('campaigns', () => {
 
       const campaign = campaigns.value.find(c => c.id === record.id);
       if (!campaign) return;
-
-      campaign.name = record.name;
-      campaign.characters = record.characters;
-      // console.log(record.characters);
+      // TODO: add sync for new characters or unsubsribe from deleted
+      campaign.history = record.history;
+      // campaign.name = record.name;
+      // campaign.characters = record.characters;
       // record.characters.forEach((id: string) => {
       //   const res = charactersStore.getCharacter(id);
       //   console.log(res);
@@ -54,6 +61,7 @@ const useCampaignsStore = defineStore('campaigns', () => {
         const campaign: CampaignI = {
           name: record.name,
           id: record.id,
+          history: record.history,
           characters: ref([]),
         };
 
@@ -108,13 +116,33 @@ const useCampaignsStore = defineStore('campaigns', () => {
     },
   );
 
-  // const increase = (id: string, val: number) => {
-  //   charactersStore.increase(id, val);
-  // };
+  const addExperience = (campaignId: string, exp: CampaignExperienceI): Promise<any>[] => {
+    const promises: Promise<any>[] = [];
+
+    const { ids, value, comment } = exp;
+
+    if (!ids.length || !value) return promises;
+
+    const campaign = campaigns.value.find(c => c.id === campaignId);
+
+    if (!campaign) return promises;
+    ids.forEach(id => {
+      const p = charactersStore.increase(id, value);
+      if (p) promises.push(p);
+    });
+
+    const history = [...campaign.history, { ids, value, comment }];
+
+    const campaignPromise = appStore.db.setCampaignHistory(campaignId, history);
+
+    promises.push(campaignPromise);
+    return promises;
+  };
+
   return {
     campaigns,
 
-    // increase,
+    addExperience,
   };
 });
 

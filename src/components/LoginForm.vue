@@ -7,8 +7,14 @@
   const login: Ref<string> = ref('');
   const pass: Ref<string> = ref('');
 
-  const click = async () => {
+  const clickLogin = async () => {
     await authStore.login(login.value, pass.value);
+  };
+
+  const enterLogin = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      clickLogin();
+    }
   };
 </script>
 
@@ -21,10 +27,15 @@
 
     <div class="input-container">
       <div class="input-title">Пароль:</div>
-      <input v-model.trim="pass" type="password" placeholder="Enter password" />
+      <input
+        @keydown="enterLogin"
+        v-model.trim="pass"
+        type="password"
+        placeholder="Enter password"
+      />
     </div>
 
-    <button class="log-in-out-btn" @click="click">Зайти</button>
+    <button class="log-in-out-btn" @click="clickLogin">Зайти</button>
   </div>
   <div v-if="authStore.isLoggedIn" class="logout-container">
     <button class="log-in-out-btn" @click="authStore.logout">Вийти</button>

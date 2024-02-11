@@ -1,6 +1,12 @@
 import PocketBase, { AuthModel, RecordSubscription } from 'pocketbase';
 
 const DBUrl = import.meta.env.VITE_POCKET_BASE_URL;
+
+type CampaignHistoryT = Array<{
+  ids: string[];
+  value: number;
+  comment: string;
+}>;
 class PocketDataBase {
   readonly client: PocketBase = new PocketBase(DBUrl);
 
@@ -44,11 +50,15 @@ class PocketDataBase {
   }
 
   setCharacterExperience(id: string, value: number) {
-    this.client.collection('characters').update(id, { experience: value });
+    return this.client.collection('characters').update(id, { experience: value });
   }
 
   getCompaign(id: string) {
     return this.client.collection('campaigns').getOne(id);
+  }
+
+  setCampaignHistory(id: string, value: CampaignHistoryT) {
+    return this.client.collection('campaigns').update(id, { history: value });
   }
 
   onCurrentCampaignChange(id: string, cb: (record: AuthModel) => void) {

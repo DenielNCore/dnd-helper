@@ -54,7 +54,7 @@ const useCharactersStore = defineStore('characters', () => {
 
     if (!experience && experience !== 0) return;
 
-    appStore.db.setCharacterExperience(id, char.experience + val);
+    return appStore.db.setCharacterExperience(id, char.experience + val);
   };
 
   return {
