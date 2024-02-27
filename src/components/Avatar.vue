@@ -167,14 +167,14 @@
       opacity: 1;
     }
     100% {
-      transform: translateY();
+      transform: translateY(400px);
       opacity: 0;
     }
   }
 
   .falling {
     animation-name: falling;
-    animation-duration: 5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
   }
 </style>

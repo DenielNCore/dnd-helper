@@ -26,9 +26,11 @@
     <div class="container">
       <div class="avatar-list-container">
         <div
-          class="avatar-animation-container"
           v-for="(avatar, index) in list"
           :key="index"
+          :style="{
+            width: `${avatar.selection === Selection.current ? 120 : 96}px`,
+          }"
           @transitionend="() => deleteAvatar(avatar.health)"
           :class="{ shrink: listNumber[index] }"
         >
@@ -82,16 +84,7 @@
   }
 
   .shrink {
-    // animation-name: shrink;
-    // animation-duration: 5s;
-    // animation-fill-mode: forwards;
-    transition: width 3s;
-    width: 0;
-  }
-
-  .avatar-animation-container {
-    transition: width 3s;
-    overflow: hidden;
-    width: 100px;
+    transition: width 1s;
+    width: 0 !important;
   }
 </style>
