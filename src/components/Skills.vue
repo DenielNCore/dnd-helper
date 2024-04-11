@@ -54,12 +54,12 @@
   // }
 
   const list = ref([
-    { type: AbilityType.Strength, amount: ref(8) },
-    { type: AbilityType.Dexterity, amount: ref(8) },
-    { type: AbilityType.Constitution, amount: ref(8) },
-    { type: AbilityType.Intelligence, amount: ref(8) },
-    { type: AbilityType.Wisdom, amount: ref(8) },
-    { type: AbilityType.Charisma, amount: ref(8) },
+    { type: AbilityType.Strength, amount: 8 },
+    { type: AbilityType.Dexterity, amount: 8 },
+    { type: AbilityType.Constitution, amount: 8 },
+    { type: AbilityType.Intelligence, amount: 8 },
+    { type: AbilityType.Wisdom, amount: 8 },
+    { type: AbilityType.Charisma, amount: 8 },
   ]);
 </script>
 

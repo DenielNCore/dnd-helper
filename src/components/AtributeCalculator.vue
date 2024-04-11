@@ -1,13 +1,12 @@
 <script setup lang="ts">
   import { AbilityType } from '@/types/abilityTypes';
   import Ability from '@/components/Ability.vue';
-  import { computed, ref } from 'vue';
+  import { computed, ref, defineProps } from 'vue';
 
   const props = defineProps<{
     list: Array<{ type: AbilityType; amount: number }>;
   }>();
 
-  const test = ref(10);
   const maxAvailablePoints = 27;
   const availablePoints = computed(() => {
     return maxAvailablePoints;
@@ -25,8 +24,6 @@
   // const decrementPoints = () => {
   //   points.value++;
   // };
-
-  console.log(props.list);
 </script>
 
 <template>
@@ -36,14 +33,14 @@
       <div>Proficiency Bonus: +2</div>
       <div>
         <div>AbilityType Points</div>
-        <div>{{ test }}</div>
+        <div>{{ availablePoints }}</div>
       </div>
     </div>
 
     <div class="all-abilities-container">
       <div class="title-container">
         <div v-for="(ability, index) in list" :key="index">
-          <Ability :test="ability.amount" v-model="test" :type="ability.type" />
+          <Ability v-model:amount="ability.amount" :type="ability.type" />
         </div>
       </div>
     </div>

@@ -5,11 +5,9 @@
   const props = defineProps({
     div1Text: String,
     type: String,
-    test: Number,
   });
 
-  const amount = defineModel<number>('amount', { default: 0 });
-  console.log(amount, props.test);
+  const amount = defineModel('amount', { default: 0, type: Number });
 
   //const count = ref(8);
 
