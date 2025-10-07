@@ -27,10 +27,10 @@
 </script>
 
 <template>
-  <div class="menu" :class="{ 'is-open': isOpen }">
-    <div @click="openMySpells">Книга заклять</div>
-    <div @click="openAllSpells">Всі закляття</div>
-    <div @click="openSkills">Вміння</div>
+  <div class="menu" :class="{ 'is-open': isOpen }" data-testid="side-menu">
+    <div @click="openMySpells" data-testid="my-spells-tab">Книга заклять</div>
+    <div @click="openAllSpells" data-testid="all-spells-tab">Всі закляття</div>
+    <div @click="openSkills" data-testid="skills-tab">Вміння</div>
   </div>
 </template>
 

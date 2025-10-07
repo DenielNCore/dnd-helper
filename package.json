@@ -10,7 +10,13 @@
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write --parser typescript \"src/**/*.(ts|js)\" && prettier --write --parser html \"src/**/*.(vue)\""
+    "format": "prettier --write --parser typescript \"src/**/*.(ts|js)\" && prettier --write --parser html \"src/**/*.(vue)\"",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "test:install": "playwright install"
   },
   "dependencies": {
     "pinia": "^2.1.7",
@@ -18,6 +24,7 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
     "@rushstack/eslint-patch": "^1.5.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/eslint-config-prettier": "^8.0.0",

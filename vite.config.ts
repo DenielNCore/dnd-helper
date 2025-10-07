@@ -22,7 +22,7 @@ export default defineConfig({
     //   },
     // }),
   ],
-  base: 'dnd-helper',
+  base: '/dnd-helper',
 
   resolve: {
     alias: {
